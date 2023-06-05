@@ -1,0 +1,136 @@
+﻿
+.map #XemMap {
+    font-size: 20px;
+    width: 100%;
+    height: 10vh;
+    color: yellow;
+    background: none;
+}
+
+    .map #XemMap:hover {
+        color: white;
+        font-weight: 700;
+    }
+
+#map #XemKS {
+    margin-left: 94vh;
+    position: absolute;
+    z-index: 1000;
+    background-color: black;
+    color: white;
+}
+
+    #map #XemKS:hover {
+        border: 3px solid yellow;
+        color: yellow;
+        font-weight: 700;
+    }
+/*-----------------------------*/
+#map .DangKy_Map {
+    position: absolute;
+    z-index: -999;
+    margin-left: 60px;
+    margin-top: 100px;
+    text-align: left;
+    width: 350px;
+    height: auto;
+    word-wrap: break-word;
+}
+
+    #map .DangKy_Map #info_ksks {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        border-radius: 20px;
+        border: 1px solid yellow;
+    }
+
+        #map .DangKy_Map #info_ksks h2 {
+            color: cornflowerblue;
+            font-weight: 800;
+            margin: 15px;
+        }
+
+        #map .DangKy_Map #info_ksks .anhavtks {
+            width: 100%;
+            height: 185px;
+            overflow: hidden;
+            border-radius: 50px;
+            border: 2px solid white;
+        }
+
+            #map .DangKy_Map #info_ksks .anhavtks img {
+                border: 2px solid;
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: cover;
+            }
+
+            #map .DangKy_Map #info_ksks .anhavtks p {
+                color: beige;
+                font-weight: 700;
+                margin-top: 25%;
+            }
+
+        #map .DangKy_Map #info_ksks .dc {
+            padding-left: 10px;
+            padding-right: 10px;
+            color: yellow;
+        }
+
+        #map .DangKy_Map #info_ksks .oke {
+            text-decoration: none;
+            padding: 5px 20px 5px 20px;
+            font-weight: 500;
+            background-color: wheat;
+            border-radius: 20px;
+            color: black;
+            width: 67%;
+        }
+
+            #map .DangKy_Map #info_ksks .oke:hover {
+                background-color: cadetblue;
+            }
+
+#map #DangKy_Map #info_ksks button {
+    text-decoration: none;
+    padding: 5px 20px 5px 20px;
+    font-weight: 500;
+    background: rgba(0,0,0,0.4);
+    border-radius: 20px;
+    color: wheat;
+}
+
+    #map #DangKy_Map #info_ksks button:hover {
+        background-color: black;
+    }
+
+#map .DangKy_Map #info_ksks .lienhe_map {
+    width: 100%;
+    display: flex;
+    padding-top: 10px;
+}
+
+    #map .DangKy_Map #info_ksks .lienhe_map p {
+        border: 1px solid;
+        font-size: 15px;
+        width: 50%;
+        text-align: center;
+        color: aquamarine;
+    }
+
+#map .thoat_map {
+    position: absolute;
+    z-index: 999;
+    right: 45px;
+    background: rgba(0,60,136,.5);
+    margin-top: 13px;
+}
+
+#map #DangKy_Map #info_ksks #thoat_form {
+    padding: 0px;
+    background: rgba(0,0,0,0.3);
+    position: absolute;
+    margin-left: 150px;
+    margin-top: 20px;
+}

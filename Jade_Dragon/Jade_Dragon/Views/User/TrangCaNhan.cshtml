@@ -1,0 +1,84 @@
+﻿@model Jade_Dragon.Models.NguoiDung
+@{
+    ViewBag.Title = "TrangCaNhan";
+    Layout = "~/Views/Shared/TongHop.cshtml";
+}
+<link href="~/Style/css/html/User.css" rel="stylesheet" />
+
+<div class="home">
+    <div class="home__background"></div>
+    <div class="grid wide">
+        <div class="row">
+            @using (Html.BeginForm("TrangCaNhan", "User", FormMethod.Post,
+                                new { enctype = "multipart/form-data", @class = "home__container__slider" }))
+            {
+                <div class="User--avt">
+                    <div class="User--avt-a">
+                        <div class="Content--user">
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.MaNguoiDung)
+
+                            @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "name", placeholder = "Họ Và Tên" } })
+                            @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+
+                            <div class="List-Content" style="margin-top: 50px;">
+                                <label for="">Sđt: </label>
+                                @Html.EditorFor(model => model.SoDienThoai, new { htmlAttributes = new { placeholder = "Nhập số điện thoại" } })
+                                @Html.ValidationMessageFor(model => model.SoDienThoai, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="List-Content">
+                                <label>Gmail: </label>
+                                @Html.EditorFor(model => model.Gmail, new { htmlAttributes = new { placeholder = "Nhập gmail" } })
+                                @Html.ValidationMessageFor(model => model.Gmail, "", new { @class = "text-danger" })
+                            </div> <br />
+                            <div class="List-Content">
+                                <label for="">Địa chỉ: </label>
+                                @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { placeholder = "Nhập địa chỉ" } })
+                                @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="List-Content the" style="margin-top: -130px;">
+                                <label for="">Thẻ CMND: </label>
+                                @Html.EditorFor(model => model.CMND, new { htmlAttributes = new { placeholder = "Nhập CMND" } })
+                                @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="Account">
+                                <div class="List-Content">
+                                    <label for="">Tên đăng nhập: </label>
+                                    @Html.EditorFor(model => model.TenDangNhap, new { htmlAttributes = new { placeholder = "Nhập tên đăng nhập" } })
+                                    @Html.ValidationMessageFor(model => model.TenDangNhap, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="matkhau">
+                                    <i>Mật khẩu của bạn được bảo mật tốt nhất</i> <br />
+                                    @Html.ValidationSummary(true, "")
+                                    @Html.HiddenFor(model => model.MatKhau)
+                                    <a href="@Url.Action("QuenMatKhau", "User", new {id = Session["MaNguoiDung"] })">
+                                        Đổi lại mật khẩu
+                                    </a>
+                                </div>
+                            </div>
+                            @Html.HiddenFor(model => model.MaPhanQuyen)
+                            @Html.HiddenFor(model => model.DaXacMinh)
+                            <button type="submit">SAVE</button>
+                        </div>
+                    </div>
+                    <div class="Anh_avt">
+                        <img src="~/UpLoad_Img/KhachHang/@Model.Avt" alt="" id="img-avt">
+                        <div class="tai-img">
+                            <input type="file" id="uploadhinh" name="uploadhinh" accept="image/*" style=" color: aliceblue;" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    const image = document.getElementById("img-avt");
+    var input = document.getElementById("uploadhinh");
+
+    input.addEventListener("change", () => {
+        image.src = URL.createObjectURL(input.files[0]);
+    });
+</script>

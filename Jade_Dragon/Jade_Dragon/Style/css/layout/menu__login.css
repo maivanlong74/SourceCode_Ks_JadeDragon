@@ -1,0 +1,59 @@
+﻿
+
+.header__nav__container .grid .row .top .header__nav__container--search .a {
+    position: relative;
+}
+
+    .header__nav__container .grid .row .top .header__nav__container--search .a .avt {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 3px solid #222f3e;
+        background: wheat;
+        cursor: pointer;
+    }
+
+        .header__nav__container .grid .row .top .header__nav__container--search .a .avt:hover {
+            background: chocolate;
+        }
+
+    .header__nav__container .grid .row .top .header__nav__container--search .a ul {
+        position: absolute;
+        margin-left: 156px;
+        background: wheat;
+        width: 134px;
+        text-align: left;
+        border-radius: 10px;
+        border: 2px solid black;
+        list-style: none;
+        display: none;
+    }
+
+        .header__nav__container .grid .row .top .header__nav__container--search .a ul li {
+            width: 130px;
+        }
+
+            .header__nav__container .grid .row .top .header__nav__container--search .a ul li a {
+                color: black;
+                text-decoration: none;
+                padding-left: 10px;
+                font-size: 12px;
+            }
+
+        .header__nav__container .grid .row .top .header__nav__container--search .a ul .User--a {
+            border-bottom: 2px solid black;
+            border-radius: 7px;
+            padding: 7px;
+        }
+
+            .header__nav__container .grid .row .top .header__nav__container--search .a ul .User--a:hover {
+                background-color: #c8d6e5;
+            }
+
+        .header__nav__container .grid .row .top .header__nav__container--search .a ul li:hover a {
+            font-weight: 800;
+        }
+
+    .header__nav__container .grid .row .top .header__nav__container--search .a:hover ul {
+        display: block;
+    }

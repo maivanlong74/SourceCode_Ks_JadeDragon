@@ -1,0 +1,345 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using System.Globalization;
+using System.Linq;
+using System.Net;
+using System.Reflection;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
+using System.Web;
+using System.Web.Mvc;
+using Jade_Dragon.Areas.Admin.Controllers;
+using Jade_Dragon.common;
+using Jade_Dragon.Models;
+using Microsoft.Owin.BuilderProperties;
+using PagedList;
+using Xamarin.Essentials;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+
+namespace Jade_Dragon.Controllers
+{
+    public class GioHangController : Controller
+    {
+        private Connect db = new Connect();
+        private const string giohang = "giohang";
+        //Đặt phòng
+        public ActionResult DatPhong(long? maks, string sodem)
+        {
+            
+            var cart = Session[giohang];
+            var list = new List<Cart>();
+            
+            if (cart != null)
+            {
+                list = (List<Cart>)cart;
+                
+                if(sodem != null)
+                {
+                    long htsodem = long.Parse(sodem); ;
+                    decimal tongtien = list.Sum(item => item.TongTien()) * htsodem;
+                    Session["tongtien"] = tongtien;
+                }
+                else
+                {
+                    decimal tongtien = list.Sum(item => item.TongTien());
+                    Session["tongtien"] = tongtien;
+                }
+
+                decimal tongsoluong = list.Sum(a => a.TongSoLuong());
+                Session["TongSoLuong"] = tongsoluong;
+            }
+
+            if (maks == null)
+            {
+                List<khuvuc> KhuVuc = new List<khuvuc>();
+                KhuVuc = db.khuvucs.ToList();
+                ViewBag.ListKhuVuc = KhuVuc;
+                return View(list);
+            }
+            else
+            {
+                var ks = db.khachsans.FirstOrDefault(v => v.MaKhachSan == maks);
+                Session["MaKhachSanPhong"] = ks.MaKhachSan;
+                Session["TenKhachSan"] = ks.TenKhachSan;
+                Session["DiaChi"] = ks.DiaChi;
+                Session["SoDienThoai_ks"] = ks.SoDienThoai;
+                Session["GmailKhachSan"] = ks.Gmail;
+                Session["AnhKs"] = ks.AnhKs;
+            }
+            List<khuvuc> kv = new List<khuvuc>();
+            kv = db.khuvucs.ToList();
+            ViewBag.ListKhuVuc = kv;
+            
+            ViewBag.time_now = DateTime.Now;
+            return View(list);
+        }
+
+        public ActionResult AddItem(long maph, int soluong)
+        {
+
+            var Phong = db.phongs.FirstOrDefault(c => c.MaPhong == maph);
+            var cart = Session[giohang];
+            if (cart != null)
+            {
+                var list = (List<Cart>)cart;
+                if (list.Exists(x => x.htphong.MaKhachSan != Phong.MaKhachSan))
+                {
+                    return Redirect("~/khachsan/khachsan");
+                } else
+                {
+
+                    if (list.Exists(x => x.htphong.MaPhong == maph))
+                    {
+
+                        return Redirect("~/khachsan/khachsan");
+                    }
+                    else
+                    {
+                        //tạo mới đối tượng cart item
+                        var item = new Cart();
+                        item.htphong = Phong;
+                        item.htsoluong = soluong;
+                        list.Add(item);
+                    }
+                    //Gán vào session
+                    Session[giohang] = list;
+                }
+            }
+            else
+            {
+                //tạo mới đối tượng cart item
+                var item = new Cart();
+                item.htphong = Phong;
+                item.htsoluong = soluong;
+                var list = new List<Cart>();
+                list.Add(item);
+                //Gán vào session
+                Session[giohang] = list;
+
+            }
+            return Redirect("~/GioHang/DatPhong?maks=" + Phong.MaKhachSan);
+        }
+
+        public ActionResult DeleteAll()
+        {
+            Session[giohang] = null;
+            Session["TongSoLuong"] = 0;
+            return Redirect("DatPhong");
+        }
+
+        public ActionResult Delete(long? id)
+        {
+            var sessionCart = (List<Cart>)Session[giohang];
+            sessionCart.RemoveAll(x => x.htphong.MaPhong == id);
+            Session[giohang] = sessionCart;        
+            return Redirect("DatPhong");
+        }
+
+        [HttpPost]
+        public ActionResult ThanhToan(long? makh, string hoten, long? sodienthoai, long? sotaikhoan, 
+            string tennganhang, string gmail, DateTime ngayden, DateTime ngaydi, long? maks, string htthanhtoan)
+        {
+            DateTime now = DateTime.Now;
+            /*if (ngayden.Day == now.Day && ngayden.Month == now.Month && ngayden.Year == now.Year)
+            {
+                ngayden = now;
+            }*/
+
+            if (ngayden >= now && ngayden <= ngaydi)
+            {
+                var cart = (List<Cart>)Session[giohang];
+                var list = (List<Cart>)cart;
+                decimal total = list.Sum(item => item.TongTien()) * demsodem(ngayden, ngaydi);
+                decimal tongsoluong = list.Sum(a => a.TongSoLuong());
+
+                var order = new hoadon();
+                if (makh != null)
+                {
+                    order.MaKh = makh;
+                }
+                order.NgayDat = DateTime.Now;
+                order.MaKhachSan = maks;
+                order.HoTen = hoten;
+                order.SoDienThoai = sodienthoai;
+                order.SoTaiKhoan = sotaikhoan;
+                order.TenNganHang = tennganhang;
+                order.SoLuongPhong = (long)tongsoluong;
+                order.TongTien = (long?)total;
+                order.TrangThai = false;
+                if (gmail != null)
+                {
+                    order.Gmail = gmail;
+                }
+
+
+                //Thêm Order               
+                db.hoadons.Add(order);
+                db.SaveChanges();
+                var id = order.MaHoaDon;
+                long mahoadon = order.MaHoaDon;
+
+                foreach (var dem in cart)
+                {
+                    var cthoadon = new chitiethoadon();
+                    cthoadon.MaPhong = dem.htphong.MaPhong;
+                    cthoadon.MaHoaDon = id;
+                    cthoadon.Gia = dem.htphong.Gia;
+                    cthoadon.NgayDen = ngayden;
+                    cthoadon.NgayDi = ngaydi;
+                    db.chitiethoadons.Add(cthoadon);
+                    db.SaveChanges();
+                }
+
+                /*if(gmail != null)
+                {
+                    switch (htthanhtoan.ToLower())
+                    {
+                        case "taiquay":
+                            if (GmailTaiQuay(hoten, (long)sodienthoai, gmail,
+                                total, (long)tongsoluong, (DateTime)order.NgayDat) == false)
+                            {
+                                return Redirect("~/GioHang/DatPhong?maks=" + maks);
+                            }
+                            break;
+                        case "chuyenkhoan":
+                            if (GmailChuyenKhoan(hoten, (long)sodienthoai, gmail, (long)sotaikhoan,
+                            tennganhang, total, (long)tongsoluong, (DateTime)order.NgayDat) == false)
+                            {
+                                return Redirect("~/GioHang/DatPhong?maks=" + maks);
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }*/
+
+                //Xóa hết giỏ hàng
+                Session[giohang] = null;
+                Session["TongSoLuong"] = 0;
+                return Redirect("~/GioHang/HoaDon?mahd=" + mahoadon);
+            }
+            else
+            {
+                return Redirect("~/GioHang/DatPhong?maks=" + maks);
+            }
+         }
+
+        public ActionResult XemGia(long? makh, string hoten, long? sodienthoai, long? sotaikhoan,
+            string tennganhang, string gmail, DateTime ngayden, DateTime ngaydi, long? maks)
+        {
+            Session["makhachhang"] = makh;
+            Session["tenkhachhang"] = hoten;
+            Session["sodienthoai"] = sodienthoai;
+            Session["gmail"] = gmail;
+            Session["sotaikhoan"] = sotaikhoan;
+            Session["tennganhang"] = tennganhang;
+            Session["ngayden"] = ngayden;
+            Session["ngaydi"] = ngaydi;
+
+            Session["sodem"] = demsodem(ngayden, ngaydi);
+
+            return Redirect("~/GioHang/DatPhong?maks=" + maks + "&ngayden=" + ngayden.ToString("yyyy-MM-dd") + "&ngaydi=" + ngaydi.ToString("yyyy-MM-dd"));
+
+        }
+
+        public long demsodem(DateTime ngayden, DateTime ngaydi)
+        {
+            TimeSpan den = ngayden.TimeOfDay;
+            int gioden = (int)den.TotalSeconds / 3600;
+            int phutden = (int)den.TotalSeconds / 60 % 60;
+
+            TimeSpan di = ngaydi.TimeOfDay;
+            int giodi = (int)di.TotalSeconds / 3600;
+            int phutdi = (int)di.TotalSeconds / 60 % 60;
+
+            DateTime checkInDate = new DateTime(ngayden.Year, ngayden.Month, ngayden.Day, gioden, phutden, 0);
+            DateTime checkOutDate = new DateTime(ngaydi.Year, ngaydi.Month, ngaydi.Day, giodi, phutdi, 0);
+            int sodem = check_In_Out.check(checkInDate, checkOutDate);
+
+            return sodem;
+        }
+
+        public ActionResult HoaDon(long? mahd)
+        {
+            ViewBag.now = DateTime.Now;
+            hoadon hd = db.hoadons.Find(mahd);
+            List<khuvuc> KhuVuc = new List<khuvuc>();
+            KhuVuc = db.khuvucs.ToList();
+            ViewBag.ListKhuVuc = KhuVuc;
+
+            List<chitiethoadon> cthd = new List<chitiethoadon>();
+            cthd = db.chitiethoadons.Where(m => m.MaHoaDon == hd.MaHoaDon).ToList();
+            ViewBag.ListPhong = cthd;
+
+            chitiethoadon chitiet = db.chitiethoadons.FirstOrDefault(m => m.MaHoaDon == mahd);
+            ViewBag.ngayden = chitiet.NgayDen;
+            ViewBag.ngaydi = chitiet.NgayDi;
+
+            return View(hd);
+        }
+
+        public bool GmailChuyenKhoan(string hoten, long sodienthoai, string gmail, long sotaikhoan,
+                    string tennganhang, decimal total, long tongsoluong, DateTime ngaydat)
+        {
+            try
+            {
+                string content = System.IO.File.ReadAllText(Server.MapPath("~/content/template/hoadon.html"));
+                content = content.Replace("{{CustomerName}}", hoten);
+                content = content.Replace("{{SDT}}", sodienthoai.ToString());
+                content = content.Replace("{{Email}}", gmail);
+                content = content.Replace("{{STK}}", sotaikhoan.ToString());
+                content = content.Replace("{{TenNganHang}}", tennganhang);
+                content = content.Replace("{{TongTien}}", total.ToString("NO"));
+                content = content.Replace("{{SoLuongPhong}}", tongsoluong.ToString());
+                content = content.Replace("{{NgayDat}}", ngaydat.ToString());
+
+                var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
+                new MailHelper().SendMail(gmail, "Xác nhận Gmail", content);
+                new MailHelper().SendMail(toEmail, "Xác nhận Gmail", content);
+            }
+            catch (Exception)
+            {
+                //ghi log
+                return false;
+            }
+            return true;
+        }
+
+        public bool GmailTaiQuay(string hoten, long sodienthoai, string gmail, decimal total, long tongsoluong, DateTime ngaydat)
+        {
+            try
+            {
+                string content = System.IO.File.ReadAllText(Server.MapPath("~/content/template/hoadon.html"));
+                content = content.Replace("{{CustomerName}}", hoten);
+                content = content.Replace("{{SDT}}", sodienthoai.ToString());
+                content = content.Replace("{{Email}}", gmail);
+                content = content.Replace("{{TongTien}}", total.ToString("NO"));
+                content = content.Replace("{{SoLuongPhong}}", tongsoluong.ToString());
+                content = content.Replace("{{NgayDat}}", ngaydat.ToString());
+
+                var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
+                new MailHelper().SendMail(gmail, "Xác nhận Gmail", content);
+                new MailHelper().SendMail(toEmail, "Xác nhận Gmail", content);
+            }
+            catch (Exception)
+            {
+                //ghi log
+                return false;
+            }
+            return true;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}

@@ -1,0 +1,77 @@
+﻿@model Jade_Dragon.Models.Chat_Admin
+
+@{
+    ViewBag.Title = "TinNhanManage";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutManage.cshtml";
+}
+
+<link href="~/Areas/Admin/Public/css/css_ChatAdmin.css" rel="stylesheet" />
+
+<div class="home">
+    <div class="body">
+        <div class="body-chat">
+            <div class="body-item-chat">
+                <div class="list-chat">
+                    <div style="height: 5%;"></div>
+
+                    <div class="list-User list-chat-a">
+                        <span>Admin</span>
+                        <ul>
+                            @foreach (var dem in Model.kh)
+                            {
+                                <li>
+                                    <button type="submit" class="btnUser" data-id="@dem.MaNguoiDung">
+                                        @dem.HoTen
+                                    </button>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="list-Group list-chat-a">
+                        <span>Nhóm chat</span>
+                        <ul id="Create_Room">
+                            @if (Session["MaKhachSan_ks"] != null)
+                            {
+                                <li class="Show">
+                                    <button type="submit" id="Create">
+                                        <img src="~/Style/img/icon/icon-them.jpg" style="width: 20px;" />
+                                    </button>
+                                </li>
+                            }
+                            <li class="Create-new">
+                                <input type="text" placeholder="Tạo nhóm mới" class="input" id="txtCreate" />
+                                <input type="hidden" id="maks" value="@Session["MaKhachSan_ks"]" />
+                                <button type="submit" class="button">Thêm</button>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="htchat">
+                    <div id="tenphong">@Session["TenPhong"]</div>
+                    <input type="hidden" id="idphong" value="@Session["MaPhong"]" />
+                    <input type="hidden" id="idUser" value="" />
+
+                    <ul id="contentMsg"></ul>
+                </div>
+            </div>
+            <div class="body-send-chat">
+                <input type="hidden" id="makh" value="@Session["MaNguoiDung"]" />
+
+                <input type="text" id="txtMessage" placeholder="Nhập chat" class="txtchat" />
+                <button type="submit" id="btnSend" class="txtchat">
+                    <img src="~/Style/img/icon/Icon-Send2.png" />
+                </button>
+                <label for="fileInput" class="fileInputWrapper">
+                    <img src="~/Style/img/icon/Icon_Img.jpg" alt="Upload Image" class="fileInputIcon">
+                    <input id="fileInput" type="file" accept="image/*">
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
+<script src="~/signalr/hubs"></script>
+<script src="~/Areas/Admin/Public/js/Chat/Chat_Manage.js"></script>

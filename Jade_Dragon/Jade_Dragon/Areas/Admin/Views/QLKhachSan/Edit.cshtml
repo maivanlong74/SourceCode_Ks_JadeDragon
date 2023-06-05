@@ -1,0 +1,159 @@
+﻿@model Jade_Dragon.Models.Ht_KhachSan
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+<link href="~/Areas/Admin/Public/css/Map/Css_MuiTen.css" rel="stylesheet" />
+<div class="home">
+    <div class="body" id="body">
+        <h1 style="color: wheat; font-weight: 700; margin-left: 140px; padding-top: 40px;">
+            Khách sạn @Session["TenKhachSan"]
+        </h1>
+        <div class="Content" style="margin-top: 80px;">
+
+            <form action="/Admin/QLKhachSan/Edit/@Session["MaKhachSan"]" enctype="multipart/form-data" method="post">
+                {
+
+                @if (Model.anhks.Count() == 0)
+                {
+                <div class="Avt" style="margin-top: 0px;">
+                    <div class="khuvuc">
+                        <header class="UpFile">Chưa có ảnh !!!</header>
+                    </div>
+                </div>
+                }
+                else
+                {
+                <div class="Avt Zoom" style="margin-top: 0px;">
+                    <div class="List-anh">
+                        @foreach (var anh in Model.anhks)
+                        {
+                            <div class="anh-item">
+                                <div class="Close-anh" title="Xóa ảnh">
+                                    <a href="@Url.Action("XoaAnh", "QLKhachSan", new {maks = Session["MaKhachSan"], maanh = anh.MaAnhKhachSan})"><img src="~/Style/img/icon/icon-X.jpg" /></a>
+                                </div>
+                                <img src="~/UpLoad_Img/KhachSan/@anh.LinkAnhKhachSan" />
+                            </div>
+                        }
+                    </div>
+                </div>
+                }
+
+                <div class="Info">
+                    <div class="one">
+                        <input type="hidden" name="MaKhachSan" value="@Model.ks.MaKhachSan"/>
+                    </div>
+                    <div class="tenkh one">
+                        <label for="">Avt: </label>
+                        <input type="file" id="uploadhinh" name="uploadhinh" accept="image/*"
+                               style=" color: aliceblue;" />
+                    </div>
+                    <div style="display:flex">
+                        <div class="one">
+                            <div class="label">
+                                <label for="">Tên Khách sạn: </label>
+                            </div>
+                            <input type="text" name="TenKhachSan" value="@Model.ks.TenKhachSan"/>
+                        </div>
+                        <div class="one">
+                            <div class="label">
+                                <label for="">Số điện thoại: </label>
+                            </div>
+                            <input type="text" name="SoDienThoai" value="@Model.ks.SoDienThoai" />
+                        </div>
+                        <div class="one">
+                            <div class="label">
+                                <label>Trạng thái khách sạn</label>
+                            </div>
+                            <select name="TrangThaiKs">
+                                <option value="true">Còn phòng</option>
+                                <option value="false">Hết phòng</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="display:flex;">
+                        <div class="one">
+                            <div class="label">
+                                <label for="">Gmail: </label>
+                            </div>
+                            <input type="text" name="Gmail" value="@Model.ks.Gmail" />
+                        </div>
+                        <div class="one">
+                            <div class="label">
+                                <label for="">Địa chỉ: </label>
+                            </div>
+                            <input type="text" name="DiaChi" value="@Model.ks.DiaChi" id = "DiaChi"/>
+                        </div>
+                    </div>
+                    <div style="display:flex;">
+                        <div class="one">
+                            <div class="label">
+                                <label for="">Giá: </label>
+                            </div>
+                            <input type="text" name="Gia" value="@Model.ks.Gia" />
+                        </div>
+                        <div class="one">
+                            <div class="label">
+                                <label for="">Khu vực: </label>
+                            </div>
+                            <input type="text" id="KhuVuc" value="@Model.ks.KhuVuc.TenKhuVuc" name="TenKhuVuc" readonly required>`;
+                        </div>
+                    </div>
+                    <div class="one">
+                        <input type="submit" class="save two" value="Save">
+                    </div>
+                    <a href="~/Admin/PhongAdmin/DanhSachPhong?MaKS=@Model.ks.MaKhachSan && ?TenKS=@Model.ks.TenKhachSan" class="two three">
+                        Chi tiết phòng
+                    </a>
+                    <div class="one" id="result">
+                        <input type="hidden" value="@Model.ks.KinhDo" name="KinhDo" readonly required>
+                        <input type="hidden" value="@Model.ks.ViDo" name="ViDo" readonly required>
+                    </div>
+                </div>
+            </form>
+            <div>
+                <a href="@Url.Action("QuanLyKs", "QLKhachSan")" class="out two" style=" margin-left: 385px; margin-top: -20px; ">
+                    Quay về trang khách sạn
+                </a>
+
+            </div>
+        </div>
+        <div class="muiten_map" id="muiten_map1">
+            <button type="button" id="MuiTen" class="MuiTen move">
+                <img src="~/Areas/Admin/Public/img/muiten.jpg" />
+            </button> <br />
+            <i>Bản đồ</i>
+        </div>
+
+        <div class="muiten_map" id="muiten_map2">
+            <button type="button" id="MuiTen_Top" class="MuiTen move">
+                <img src="~/Areas/Admin/Public/img/muitenn.jpg" />
+            </button> <br />
+            <i>Khách sạn</i>
+        </div>
+    </div>
+    <div id="map" class="map">
+        <div class="Search-Search">
+            <input type="text" id="search-input" placeholder="Tìm kiếm địa điểm">
+            <button id="search-button">Tìm kiếm</button>
+        </div>
+    </div>
+</div>
+<script src="~/Areas/Admin/Public/js/ChucNang.js"></script>
+<script>
+    var hotels = [
+        {
+            maks: '@Model.ks.MaKhachSan',
+            name: "@Model.ks.TenKhachSan",
+            address: "@Model.ks.DiaChi",
+            phone: '@Model.ks.SoDienThoai',
+            gmail: '@Model.ks.Gmail',
+            moeny: '@Model.ks.Gia',
+            coordinates: [@Model.ks.KinhDo, @Model.ks.ViDo]
+        }
+    ];
+</script>
+<script src="~/Areas/Admin/Public/js/Map/Map_Edit_Ks.js"></script>
+<script>
+    var map = initMap(hotels);
+</script>

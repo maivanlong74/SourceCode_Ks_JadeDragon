@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Jade_Dragon.Models.KhuVuc>
+@{
+    ViewBag.Title = "khuvuc";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+<script src="~/Areas/Admin/Public/js/dataTables_min.js"></script>
+<link href="~/Areas/Admin/Public/css/Table.css" rel="stylesheet" />
+<link href="~/Areas/Admin/Public/css/Map/KhuVuc.css" rel="stylesheet" />
+<body>
+    <div class="home">
+        <div class="body">
+
+            <div id="map" class="map">
+                <div class="Search-Search">
+                    <input type="text" id="search-input" placeholder="Tìm kiếm địa điểm">
+                    <button id="search-button">Tìm kiếm</button>
+                    <button id="MuiTen_Top">
+                        <img src="~/Areas/Admin/Public/img/icon_MuiTenTop.jpg" />
+                    </button>
+                    <button id="MuiTen_Bot" class="xoa">
+                        <img src="~/Areas/Admin/Public/img/icon_MuiTenBot.jpg" />
+                    </button>
+                </div>
+                <div class="DangKy_Map" id="DangKy_Map">
+                    <form action="~/Admin/khuvuc/Create" method="post" id="form-khuvuc">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    </form>
+                </div>
+                <div id="popup" class="popup"></div>
+            </div>
+
+            <input type="hidden" name="_method" value="PUT" />
+            <table id="example" class="display danhmucsp">
+                <thead>
+                    <tr>
+                        <th>Mã khu vực</th>
+                        <th>Tên khu vực</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.MaKhuVuc</td>
+                            <td>
+                                <form action="@Url.Action("Edit", "khuvuc")" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="MaKhuVuc" value="@item.MaKhuVuc" />
+                                    <input type="text" name="TenKhuVuc" value="@item.TenKhuVuc"
+                                           style="background: none; border: none; color: aqua;" />
+                                    <button type="submit" style="cursor: pointer; padding: 0px 10px 0px 10px;
+                                                                background: aqua; font-weight: 500; border-radius: 15px;">
+                                        Lưu
+                                    </button>
+                                </form>
+                            </td>
+                            <td></td>
+                            <td>
+                                <a href="@Url.Action("Delete", "khuvuc", new { id = item.MaKhuVuc})">
+                                    <img src="~/Style/img/icon/icon-xoa.jpg" />
+                                </a>
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Mã khu vực</th>
+                        <th>Tên khu vực</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.1.1/build/ol.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <script>
+        var hotels = [
+          @foreach (var i in ViewBag.ListKs) {
+              <text>{
+                maks: '@i.MaKhachSan',
+                name: '@i.TenKhachSan',
+                address: '@i.DiaChi',
+                phone: '@i.SoDienThoai',
+                gmail: '@i.Gmail',
+                moeny: '@i.Gia',
+                coordinates: [@i.KinhDo, @i.ViDo]
+            },</text>
+          }
+        ];
+    </script>
+    <script src="~/Areas/Admin/Public/js/Map/Map_KhuVuc.js"></script>
+    <script>var map = initMap(hotels);</script>
+</body>
+
+

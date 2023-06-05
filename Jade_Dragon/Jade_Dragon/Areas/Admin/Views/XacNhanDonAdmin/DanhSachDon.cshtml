@@ -1,0 +1,218 @@
+﻿@model Jade_Dragon.Models.hienthiphong
+@{
+    ViewBag.Title = "DanhSachDon";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+<link href="~/Areas/Admin/Public/css/css_XacNhanDon.css" rel="stylesheet" />
+<style>
+    .no-hd {
+        text-align: center;
+        color: wheat;
+        font-weight: 800;
+        background: rgba(0,0,0,0.7);
+    }
+</style>
+<div class="home">
+    <div class="body">
+
+        @if (Model.hd.Count() > 0)
+        {
+            <table id="example" class="display">
+                <thead>
+                    <tr>
+                        <th>Mã hóa đơn</th>
+                        <th>Tên khách sạn</th>
+                        <th>Tên khách hàng</th>
+                        <th>Ngày đặt</th>
+                        <th>Tổng tiền</th>
+                        <th>Hình thức thanh toán</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.hd)
+                    {
+                        if (item.HuyDat == true)
+                        {
+                            <tr class="invoice-row" data-invoice-id="@item.MaHoaDon" style="background-color: #d35400;" title="Khách hàng yêu cầu hủy">
+                                <td class="mhd">@item.MaHoaDon</td>
+                                @if (item.MaKhachSan != null)
+                                {
+                                    <td>
+                                        <a href="@Url.Action("Details", "QLKhachSan", new {id = item.MaKhachSan})" style="text-decoration: none; color: white;">
+                                            @item.TenKhachSan
+                                        </a>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>@item.TenKhachSan</td>
+                                }
+                                @if (item.MaNguoiDung != null)
+                                {
+                                    <td>
+                                        <a href="@Url.Action("Details", "QLKhachHang", new {id = item.MaNguoiDung})" style="text-decoration: none; color: white;">
+                                            @item.HoTen
+                                        </a>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>@item.HoTen</td>
+                                }
+                                <td>@item.NgayDat</td>
+                                <td>@item.TongTien</td>
+                                @if (item.HinhThuc == "taiquay")
+                                {
+                                    <td>Tại quầy</td>
+                                }
+                                else if (item.HinhThuc == "chuyenkhoan")
+                                {
+                                    <td>Chuyển khoản</td>
+                                }
+                                <td style="display: flex;">
+                                    @if (item.DaDat == false)
+                                    {
+                                        <a href="@Url.Action("XacNhanDon", "XacNhanDonAdmin", new {mahd = item.MaHoaDon})" style="text-decoration: none; color: wheat; font-weight: 700;">
+                                            Xác nhận
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a style="color: wheat; font-weight: 700;">Đã xác nhận</a>
+                                    }
+                                    <a href="@Url.Action("XoaDon", "XacNhanDonAdmin", new {mahd = item.MaHoaDon})" style="margin-left: 10px;">
+                                        <img src="~/Style/img/icon/X.jpg" title="Xóa hóa đơn này" />
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr class="invoice-row" data-invoice-id="@item.MaHoaDon">
+                                <td class="mhd">@item.MaHoaDon</td>
+                                @if (item.MaKhachSan != null)
+                                {
+                                    <td>
+                                        <a href="@Url.Action("Details", "QLKhachSan", new {id = item.MaKhachSan})" style="text-decoration: none; color: white;">
+                                            @item.TenKhachSan
+                                        </a>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>@item.TenKhachSan</td>
+                                }
+                                @if (item.MaNguoiDung != null)
+                                {
+                                    <td>
+                                        <a href="@Url.Action("Details", "QLKhachHang", new {id = item.MaNguoiDung})" style="text-decoration: none; color: white;">
+                                            @item.HoTen
+                                        </a>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>@item.HoTen</td>
+                                }
+                                <td>@item.NgayDat</td>
+                                <td>@item.TongTien</td>
+                                @if (item.HinhThuc == "taiquay")
+                                {
+                                    <td>Tại quầy</td>
+                                }
+                                else if (item.HinhThuc == "chuyenkhoan")
+                                {
+                                    <td>Chuyển khoản</td>
+                                }
+                                <td style="display: flex;">
+                                    @if (item.DaDat == false)
+                                    {
+                                        <a href="@Url.Action("XacNhanDon", "XacNhanDonAdmin", new {mahd = item.MaHoaDon})" style="text-decoration: none; color: wheat; font-weight: 700;">
+                                            Xác nhận
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a style="color: wheat; font-weight: 700;">Đã xác nhận</a>
+                                    }
+                                    <a href="@Url.Action("XoaDon", "XacNhanDonAdmin", new {mahd = item.MaHoaDon})" style="margin-left: 10px;">
+                                        <img src="~/Style/img/icon/X.jpg" title="Xóa hóa đơn này" />
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                        <tr class="details-row" data-invoice-id="@item.MaHoaDon">
+                            <td colspan="6">
+                                <div class="popup-content">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Mã chi tiết hóa đơn</th>
+                                                <th>Ngày đến</th>
+                                                <th>Ngày đi</th>
+                                                <th>Đơn giá</th>
+                                                <th>Tên Phòng</th>
+                                                <th>Trạng thái</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var c in Model.cthd.Where(a => a.MaHoaDon == item.MaHoaDon))
+                                            {
+                                                <tr>
+                                                    <td>@c.MaChiTietHoaDon</td>
+                                                    <td>@c.NgayDen</td>
+                                                    <td>@c.NgayDi</td>
+                                                    <td>@c.Gia</td>
+                                                    <td>@c.TenPhong</td>
+                                                    @if (c.DaDen == false)
+                                                    {
+                                                        <td>
+                                                            Khách chưa đến
+                                                        </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            Khách đã đến
+                                                        </td>
+                                                    }
+                                                    <td>
+                                                        <a href="@Url.Action("XoaChiTietDon", "XacNhanDonAdmin", new {mact = c.MaChiTietHoaDon})" style="margin-left: 10px;">
+                                                            <img src="~/Style/img/icon/X.jpg" title="Xóa đơn phòng này" />
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                    <button class="close-btn">Đóng</button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Mã hóa đơn</th>
+                        <th>Tên khách sạn</th>
+                        <th>Tên khách hàng</th>
+                        <th>Ngày đặt</th>
+                        <th>Tổng tiền</th>
+                        <th>Hình thức thanh toán</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
+        }
+        else
+        {
+            <h1 class="no-hd">Chưa có hóa đơn nào !!!</h1>
+        }
+
+        <div id="popup"></div>
+    </div>
+</div>
+<script src="~/Areas/Admin/Public/js/js_XacNhanDon.js"></script>
+

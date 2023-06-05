@@ -1,0 +1,307 @@
+﻿@model Jade_Dragon.Models.HoaDon
+@{
+    ViewBag.Title = "HoaDon";
+    Layout = "~/Views/Shared/DatPhong_HoaDon.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
+    <script src="https://openlayers.org/en/v4.6.5/build/ol.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link href="~/Style/css/Map/BoSung.css" rel="stylesheet" />
+    <link href="~/Style/css/Map/Map_DatPhong.css" rel="stylesheet" />
+    <link href="~/Style/css/html/hoadon.css" rel="stylesheet" />
+</head>
+
+<style>
+    .body .list--ks .khachsan .datmua a {
+        text-decoration: none;
+        color: white;
+        border: 2px solid;
+        background: black;
+        padding: 6px;
+        width: 205px;
+    }
+    .body .list--ks .khachsan .datmua a:hover {
+        background: #c7ecee;
+        color: black;
+    }
+</style>
+
+<body>
+    <div class="home">
+        <div class="home_body">
+            <div class="search--map">
+
+                <form action="@Url.Action("Search_GioHang", "GioHang")" method="post" class="search">
+                    <div class="row">
+                        <div class="tieude">
+                            <p>Tìm khách sạn</p>
+                        </div> <br>
+                        <div class="search--search">
+                            <div class="search__container--item">
+                                <div class="mucluc">
+                                    <span>Điểm đến</span>
+                                </div>
+                                <div class="khuvuc">
+                                    <select name="khuvuc" id="" required>
+                                        @if (ViewBag.makv != null)
+                                        {
+                                            <option value="@ViewBag.makv">@ViewBag.tenkv</option>
+                                        }
+                                        @foreach (var kv in ViewBag.ListKhuVuc)
+                                        {
+                                            <option value="@kv.MaKhuVuc">@kv.TenKhuVuc</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div> <br>
+                            <div class="search__container--item">
+                                <div class="mucluc">
+                                    <span>Ngày nhận phòng</span>
+                                </div>
+                                @if (Session["batdau"] == null)
+                                {
+                                    <input type="datetime-local" placeholder="DD-MM-YYYY" name="NgayDen" class="ngay"
+                                           min="@ViewBag.time_now" max="@ViewBag.time_max" required />
+                                }
+                                else
+                                {
+                                    <input placeholder="@Session["batdau"]" type="text" onfocus="(this.type='datetime-local')"
+                                           onblur="(this.type='text')" name="NgayDen" required value="@Session["batdau"]"
+                                           min="@ViewBag.time_now" max="@ViewBag.time_max" class="ngay" />
+                                }
+                            </div> <br>
+                            <div class="search__container--item">
+                                <div class="mucluc">
+                                    <span>Ngày trả phòng</span>
+                                </div>
+                                @if (Session["ketthuc"] == null)
+                                {
+                                    <input type="datetime-local" placeholder="DD-MM-YYYY" name="NgayDi" class="ngay"
+                                           min="@ViewBag.time_now" max="@ViewBag.time_max" required />
+                                }
+                                else
+                                {
+                                    <input placeholder="@Session["ketthuc"]" type="text" onfocus="(this.type='datetime-local')"
+                                           onblur="(this.type='text')" name="NgayDi" required value="@Session["ketthuc"]"
+                                           min="@ViewBag.time_now" max="@ViewBag.time_max" class="ngay" />
+                                }
+                            </div> <br>
+                            <div class="search__container--item">
+                                <div class="mucluc">
+                                    <span>Loại hình phòng</span>
+                                </div>
+                                <div class="tuoi">
+                                    <select name="loaihinh" id="" required>
+                                        <option value="Đơn">Đơn</option>
+                                        <option value="Đôi">Đôi</option>
+                                    </select>
+                                </div>
+                            </div> <br>
+                            <div class="search__container--item">
+                                <div class="mucluc">
+                                    <span>Thuộc phòng</span>
+                                </div>
+                                <div class="tuoi">
+                                    <select name="vip" id="" required>
+                                        <option value="True">VIP</option>
+                                        <option value="False">Thường</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="search__container--btn">
+                                <button type="submit">Tìm kiếm</button>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                @if (ViewBag.Error != "DaCoLoi")
+                {
+                    <div class="map">
+                        <div class="address">
+                            <div class="tieude">
+                                <p>Khách sạn @Session["TenKhachSan"]</p>
+                            </div>
+                            <div class="map--a">
+                                <img src="~/Style/img/map.jpg" />
+                                <div class="diachi">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            @if (ViewBag.Error == "DaCoLoi")
+            {
+                <div class="Error">
+                    <h2>@ViewBag.Message</h2>
+                    <h2>@ViewBag.Message2</h2>
+                </div>
+            }
+            else
+            {
+        <div class="info">
+            <div class="background">
+                <div class="hoadon">
+                    <div class="ThongBao">
+                        <i>@ViewBag.Message</i>
+                    </div>
+                    <div class="diachi">
+                        <p>sdt: @Model.khachsan.SoDienThoai</p>
+                        <a style="text-decoration: none; color: wheat; font-weight: 700;">
+                            Khách sạn @Model.khachsan.TenKhachSan | Địa chỉ @Model.khachsan.DiaChi
+                        </a>
+                    </div>
+                    <div class="name">
+                        <p>Hóa đơn thanh toán</p>
+                    </div>
+                    <div class="hoadon_ngay">
+                        <div class="ngay">
+                            <span>Ngày: @ViewBag.now</span>
+                        </div>
+                        <div class="mahoadon">
+                            <span>Mã Hóa Đơn: @Model.MaHoaDon</span>
+                        </div>
+                    </div>
+                    <hr>
+
+                    @if (Model.DatCoc == 0)
+                    {
+                        <div class="hoadon--ct">
+                            <div class="hoadon1">
+                                <p>Họ và tên: @Model.HoTen</p>
+                                <p>CMND/CCCD: @Model.CMND</p>
+                                <p>Điện thoại: @Model.SoDienThoai</p>
+
+                            </div>
+                            <div class="hoadon2">
+                                <div style="display: flex;">
+                                    <p>Số đêm: @ViewBag.sodem</p>
+                                    <p style="margin-left: 50px;">Số phòng: @Model.SoLuongPhong</p>
+                                </div>
+                                <p>
+                                    Danh sách phòng
+                                    <select style="background: none; border: none; color: white;">
+                                        @foreach (var dem in ViewBag.ListPhong)
+                                        {
+                                            <option value="" style="background-color: black;">
+                                                @dem.PhongKhachSan.TenPhong
+                                            </option>
+                                        }
+                                    </select>
+                                </p>
+                                <p>Ngày đến: @ViewBag.ngayden</p>
+                                <p>Ngày đi: @ViewBag.ngaydi</p>
+                                <p>Thanh toán: @Model.TongTien VND</p>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="hoadon--ct">
+                            <div class="hoadon1">
+                                <p>Họ và tên: @Model.HoTen</p>
+                                <p>CMND/CCCD: @Model.CMND</p>
+                                <p>Điện thoại: @Model.SoDienThoai</p>
+                                <p>Tiền đã cọc: @Model.DatCoc VND</p>
+
+                            </div>
+                            <div class="hoadon2">
+                                <div style="display: flex;">
+                                    <p>Số đêm: @ViewBag.sodem</p>
+                                    <p style="margin-left: 50px;">Số phòng: @Model.SoLuongPhong</p>
+                                </div>
+                                <p>
+                                    Danh sách phòng
+                                    <select style="background: none; border: none; color: white;">
+                                        @foreach (var dem in ViewBag.ListPhong)
+                                        {
+                                            <option value="" style="background-color: black;">
+                                                @dem.PhongKhachSan.TenPhong
+                                            </option>
+                                        }
+                                    </select>
+                                </p>
+                                <p>Ngày đến: @ViewBag.ngayden</p>
+                                <p>Ngày đi: @ViewBag.ngaydi</p>
+                                <p>Số tiền còn thiếu: @Model.TongTien VND</p>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+            <div id="map">
+                <button id="thoat_map" class="thoat_map">
+                    <img src="~/Style/img/icon/icon-X.jpg" style="width: 22px;" title="Tắt Map" />
+                </button>
+                <div class="Search-Search">
+                    <input type="text" id="search-input" placeholder="Tìm kiếm địa điểm">
+                    <button id="search-button">Tìm kiếm</button>
+                </div>
+                <div class="DangKy_Map" id="DangKy_Map">
+                    <div id="info_ksks"></div>
+                </div>
+                <div id="popup" class="popup"></div>
+                <input type="hidden" id="Dv_KinhDo" value="" />
+                <input type="hidden" id="Dv_ViDo" value="" />
+            </div>
+        </div>
+            }
+
+        </div>
+    </div>
+
+    @if (ViewBag.Error != "DaCoLoi")
+    {
+        <div class="body">
+            <div class="tieude">
+                <h1>Một số khách sạn quanh đây</h1>
+            </div>
+            <div class="list--ks">
+                @foreach (var dem in ViewBag.listks)
+                {
+                    <div class="khachsan">
+                        <div class="anh">
+                            <img src="~/UpLoad_Img/KhachSan/@dem.AnhKs" alt="">
+                        </div>
+                        <div class="mota">
+                            <a href="" class="name">Khách sạn @dem.TenKhachSan</a> <br>
+                            <i>Trạng thái: Đang hoạt động</i> <br>
+                            <a href="">Địa chỉ: @dem.DiaChi</a> <br>
+                            <p>@dem.Gia VND</p>
+                        </div>
+                        <div class="datmua">
+                            <a href="~/khachsan/khachsan?ma=@dem.MaKhachSan">Đặt mua</a>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    }
+
+    <script>
+        var hotels = [
+            {
+                maks: '@Session["MaKhachSanPhong"]',
+                name: '@Session["TenKhachSan"]',
+                address: '@Session["DiaChi"]',
+                phone: '@Session["SoDienThoai_ks"]',
+                gmail: '@Session["GmailKhachSan"]',
+                moeny: '@Session["Gia"]',
+                avt: '@Session["AnhKs"]',
+                coordinates: [@Session["KinhDo"], @Session["ViDo"]]
+            }
+        ];
+    </script>
+    <script src="~/Style/js/Map/Map_DatPhong.js"></script>
+    <script>var map = initMap(hotels);</script>
+</body>

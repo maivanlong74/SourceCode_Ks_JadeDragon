@@ -1,0 +1,323 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.ks-thanhcuon {
+    width: 100%;
+    height: 35vw;
+    border: 3px solid black;
+}
+
+.slider-item {
+    width: 100%;
+    height: 35vw;
+    position: relative;
+}
+
+    .slider-item::before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+    }
+
+.slider-item-one {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* ------Owl------ */
+
+.owl-carousel {
+    width: 100% !important;
+}
+
+.owl-prev {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 50px !important;
+    color: #fff !important;
+}
+
+.owl-next {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 50px !important;
+    color: #fff !important;
+}
+
+    .owl-prev, .owl-next:hover {
+        background: none !important;
+    }
+
+.owl-dots {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+}
+
+    .owl-dots span {
+        width: 15px !important;
+        height: 15px !important;
+        margin: 0 !important;
+        background-color: transparent !important;
+    }
+
+.owl-dot {
+    border: 2px solid white !important;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+    .owl-dot.active span {
+        background-color: black !important;
+    }
+
+/* -------------------- */
+.info_khachsan {
+    height: 480px;
+}
+
+/* =====Thông tin khách sạn============ */
+.info-kss {
+    width: 86%;
+    height: 55vh;
+    position: relative;
+    z-index: 993;
+    margin-top: -84vh;
+    margin-left: 5vh;
+    color: antiquewhite;
+}
+
+    .info-kss .name-ks {
+        background: rgba(0,0,0,0.8);
+        border: 1px solid white;
+        text-align: center;
+        width: 100%;
+        padding: 10px 0px 10px 0px;
+        margin-top: 20vh;
+        margin-left: 5vh;
+    }
+
+        .info-kss .name-ks h1 {
+            font-size: 25px;
+        }
+
+    .info-kss .info-ks-item {
+        background: rgba(0,0,0,0.8);
+        border: 1px solid white;
+        width: 50vh;
+        margin-top: 5vh;
+        margin-left: 15vh;
+    }
+
+        .info-kss .info-ks-item p {
+            margin: 10px;
+        }
+
+#form-danhgia {
+    display: flex;
+    margin-left: 10px;
+}
+
+    #form-danhgia .button-danhgia {
+        color: black;
+        background: wheat;
+        margin-left: 10px;
+        height: 30px;
+        width: 90px;
+        margin-top: 7px;
+        border-radius: 20px;
+    }
+    #form-danhgia .button-danhgia:hover{
+        background: black;
+        color: yellow;
+        border: 1px solid yellow;
+        font-weight: 700;
+    }
+/* ======================================= */
+
+/* ========Thông tin phòng============== */
+.name-phong {
+    background: black;
+    border: 2px solid yellow;
+    text-align: center;
+    padding: 10px;
+}
+
+    .name-phong h1 {
+        font-family: initial;
+        font-size: 50px;
+    }
+
+.info_phong {
+    height: auto;
+    border: 1px solid yellow;
+}
+
+/* ------Đổi ảnh---------------- */
+.item__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border: 2px solid white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+/* ----Phân trang phòng----------- */
+.pagination .phong-lui {
+    margin-left: 50px;
+    color: white;
+    background: black;
+    padding: 2px 5px 2px 5px;
+    border-radius: 10px;
+}
+
+    .pagination .phong-lui:hover {
+        color: yellow;
+        border: 1px solid yellow;
+    }
+
+.pagination .phong-tien {
+    margin-left: 10px;
+    color: white;
+    background: black;
+    padding: 2px 5px 2px 5px;
+    border-radius: 10px;
+}
+
+    .pagination .phong-tien:hover {
+        color: yellow;
+        border: 1px solid yellow;
+    }
+
+/* ================================ */
+
+/* ========Đánh giá, nhận xét========= */
+.danhgia_ks {
+    height: auto;
+    border: 1px solid yellow;
+    background: black;
+    padding-bottom: 50px;
+}
+
+    .danhgia_ks .binhluan {
+        height: 80px;
+        border: 1px solid white;
+    }
+
+        .danhgia_ks .binhluan form {
+            margin-left: 20px;
+            margin-top: 30px;
+        }
+
+            .danhgia_ks .binhluan form .noidung-cmt {
+                color: black;
+                width: 80vh;
+                height: 30px;
+                border-radius: 20px;
+                text-align: center;
+            }
+
+            .danhgia_ks .binhluan form .button-cmt {
+                color: black;
+                background: wheat;
+                height: 30px;
+                width: 65px;
+                margin-left: 5px;
+                border-radius: 20px;
+            }
+
+                .danhgia_ks .binhluan form .button-cmt:hover {
+                    color: white;
+                    font-weight: 700;
+                    background: black;
+                    border: 1px solid white;
+                }
+
+    .danhgia_ks .list-binhluan {
+        border: 1px solid wheat;
+        height: auto;
+        width: 95vh;
+        margin-left: 25vh;
+        margin-top: 10vh;
+    }
+
+        .danhgia_ks .list-binhluan .ht-cmt {
+            width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+
+            .danhgia_ks .list-binhluan .ht-cmt .ht-cmt-item {
+                width: 90%;
+                word-wrap: break-word;
+                border: 1px solid;
+                color: white;
+                margin-bottom: 15px;
+                padding: 5px;
+                margin-left: 30px;
+                border-radius: 10px;
+            }
+
+                .danhgia_ks .list-binhluan .ht-cmt .ht-cmt-item i {
+                    font-weight: 800;
+                    padding-right: 10px;
+                }
+/* -------Phân trang bình luận--------------- */
+.phantrang-cmt {
+    margin-top: 10px;
+}
+
+    .phantrang-cmt .cmt-lui {
+        margin-left: 50px;
+        color: white;
+        background: black;
+        padding: 2px 5px 2px 5px;
+        border-radius: 10px;
+        border: 2px solid;
+    }
+
+        .phantrang-cmt .cmt-lui:hover {
+            color: yellow;
+            border: 1px solid yellow;
+        }
+
+    .phantrang-cmt .cmt-tien {
+        margin-left: 10px;
+        color: white;
+        background: black;
+        padding: 2px 5px 2px 5px;
+        border-radius: 10px;
+        border: 2px solid;
+    }
+
+        .phantrang-cmt .cmt-tien:hover {
+            color: yellow;
+            border: 1px solid yellow;
+        }
+/* -------------------------- */
+

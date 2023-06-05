@@ -1,0 +1,81 @@
+﻿#DiaChi {
+    width: 450px;
+}
+
+#map {
+    width: 98%;
+    margin-left: 20px;
+}
+
+.body #muiten_map2 {
+    display: none;
+}
+
+.body .muiten_map {
+    text-align: center;
+}
+
+    .body .muiten_map .MuiTen {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .body .muiten_map i {
+        color: white;
+        font-weight: 700;
+    }
+    .body .muiten_map .MuiTen.move {
+        animation: moveUpDown 0.5s ease-in-out infinite alternate;
+    }
+
+@keyframes moveUpDown {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-10px);
+    }
+}
+
+.body .muiten_map .MuiTen:hover {
+    background-image: linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red);
+    background-size: 200% 200%;
+    animation: gradientBG 5s ease-in-out infinite;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.body .map .ol-viewport {
+    border: 3px solid yellow;
+}
+
+.body .map .ol-zoomslider {
+    border: 1px solid !important;
+    background-color: aqua !important;
+}
+
+.body .map .ol-scale-line {
+    left: 40px;
+    bottom: 10px;
+}
+
+#map .popup {
+    position: absolute;
+    z-index: 999;
+    display: none;
+}

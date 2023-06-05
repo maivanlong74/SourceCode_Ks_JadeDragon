@@ -1,0 +1,177 @@
+﻿@model Jade_Dragon.Models.hienthiphong
+@{
+    ViewBag.Title = "DanhSachPhong";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+<link href="~/Areas/Admin/Public/css/css_QuanLyPhongg.css" rel="stylesheet" />
+<style>
+    .info-phong h1 .chuyen-avt{
+        text-decoration: none;
+        color: white;
+    }
+</style>
+<ul class="home">
+    <span class="name-ks">
+        Khách sạn @ViewBag.ten
+    </span>
+    @foreach (var i in Model.sotang)
+    {
+        <li class="tangks">
+            <ul class="list-phong">
+                <li class="name-tang">
+                    <h1>@i.SoTang</h1>
+                    @if (i.MaSoTang != 1)
+                    {
+                        <a href="@Url.Action("Xoatang", "PhongAdmin", new {maks = ViewBag.ma, matang = i.MaSoTang})" class="delete-tang">Xóa tầng</a>
+                    }
+                </li>
+                @foreach (var j in Model.ph.Where(n => n.MaSoTang == i.MaSoTang))
+                {
+                    if (j.KhoaPhong == true)
+                    {
+                        <li class="list-phong-item phongkhoa">
+                            <i>Phòng đang khóa</i>
+                            <div class="phongkhoa-item">
+                                <a href="@Url.Action("mokhoaphong", "PhongAdmin", new {maph = j.MaPhong})">Mở khóa</a>
+                            </div>
+                        </li>
+                    }
+                    else
+                    {
+                        if (j.TrangThai == true)
+                        {
+                            <li class="list-phong-item">
+                                <div class="info-phong">
+                                    <h1>
+                                        <a href="@Url.Action("ThemAnh", "PhongAdmin", new {maks = j.MaKhachSan, maph = j.MaPhong})" class="chuyen-avt">
+                                            @j.SoPhongKhachSan.SoPhong
+                                        </a>
+                                    </h1>
+                                    <div class="form">
+                                        <form action="/Admin/PhongAdmin/Edit" method="post">
+                                            <input type="hidden" name="maph" value="@j.MaPhong" />
+                                            <input type="hidden" name="maks" value="@ViewBag.ma" />
+                                            <div class="info-phong-item">
+                                                <label for="">Loại hình Phòng:</label> <br>
+                                                <input type="text" placeholder="Nhập phòng đơn/đôi" class="input" value="@j.LoaiHinh" name="loaihinh">
+                                            </div>
+                                            <div class="info-phong-item">
+                                                <label for="">Giá:</label> <br>
+                                                <input type="text" placeholder="Nhập giá phòng" class="input" value="@j.Gia" name="gia">
+                                            </div>
+                                            <div class="info-phong-item">
+                                                <label for="">Thuộc loại phòng:</label> <br>
+                                                <div class="vip">
+                                                    @if (j.VIP == true)
+                                                    {
+                                                        <label for="">VIP</label>
+                                                        <input type="radio" name="vip" id="vip-radio" value="true" checked>
+                                                        <label for="">Thường</label>
+                                                        <input type="radio" name="vip" id="thuong-radio" value="false">
+                                                    }
+                                                    else
+                                                    {
+                                                        <label for="">VIP</label>
+                                                        <input type="radio" name="vip" id="vip-radio" value="true">
+                                                        <label for="">Thường</label>
+                                                        <input type="radio" name="vip" id="thuong-radio" value="false" checked>
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="button-dk">
+                                                <button type="submit">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="khoaphong">
+                                    <a href="@Url.Action("khoaphong", "PhongAdmin", new {maph = j.MaPhong})">Khóa phòng</a>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="list-phong-item phongdat">
+                                <div class="info-phong">
+                                    <h1>
+                                        <a href="@Url.Action("ThemAnh", "PhongAdmin", new {maks = j.MaKhachSan, maph = j.MaPhong})" class="chuyen-avt">
+                                            @j.SoPhongKhachSan.SoPhong
+                                        </a>
+                                    </h1>
+                                    <i>Có khách đặt</i>
+                                    <div class="form">
+                                        <form action="" method="post">
+                                            <div class="info-phong-item">
+                                                <label for="">Loại hình Phòng:</label> <br>
+                                                <input type="text" placeholder="Nhập phòng đơn/đôi" class="input" value="@j.LoaiHinh">
+                                            </div>
+                                            <div class="info-phong-item">
+                                                <label for="">Giá:</label> <br>
+                                                <input type="text" placeholder="Nhập giá phòng" class="input" value="@j.Gia">
+                                            </div>
+                                            <div class="info-phong-item">
+                                                <label for="">Thuộc loại phòng:</label> <br>
+                                                <div class="vip">
+                                                    @if (j.VIP == true)
+                                                    {
+                                                        <label for="">VIP</label>
+                                                        <input type="radio" name="loai-phong" value="vip" id="vip-radio" checked>
+                                                        <label for="">Thường</label>
+                                                        <input type="radio" name="loai-phong" value="thuong" id="thuong-radio">
+                                                    }
+                                                    else
+                                                    {
+                                                        <label for="">VIP</label>
+                                                        <input type="radio" name="loai-phong" value="vip" id="vip-radio">
+                                                        <label for="">Thường</label>
+                                                        <input type="radio" name="loai-phong" value="thuong" id="thuong-radio" checked>
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="button-dk">
+                                                <button type="submit">Save</button>
+                                            </div>
+                                        </form>
+                                        <div class="hoadon">
+                                            @foreach (var k in Model.cthd.Where(n => n.MaPhong == j.MaPhong))
+                                            {
+                                                if (k.HoanThanh == false)
+                                                {
+                                                    <div class="hd-khachhang">
+                                                        @if (k.DaDen == false && k.NgayDen <= ViewBag.time)
+                                                        {
+                                                            <div class="Check-InOut">
+                                                                <a href="@Url.Action("Check_In", "PhongAdmin", new {mact = k.MaChiTietHoaDon, maks = ViewBag.ma})" class="Check-Check">Check In</a>
+                                                            </div>
+                                                        }
+                                                        else if (k.DaDen == true)
+                                                        {
+                                                            <div class="Check-InOut">
+                                                                <a href="@Url.Action("Check_Out", "PhongAdmin", new {mact = k.MaChiTietHoaDon, maks = ViewBag.ma})" class="Check-Check">Check Out</a>
+                                                            </div>
+                                                        }
+                                                        <p>Khách hàng: @k.HoaDon.HoTen</p>
+                                                        <p>Ngày đến: @k.NgayDen</p>
+                                                        <p>Ngày đi: @k.NgayDi</p>
+                                                    </div>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    }
+                }
+                <li class="list-phong-item">
+                    <a href="@Url.Action("themphong", "PhongAdmin", new {maks = ViewBag.ma, matang = i.MaSoTang})" class="Create">+</a>
+                </li>
+            </ul>
+        </li>
+    }
+    <li class="tangks" style="height: 15vh;">
+        <a href="@Url.Action("themtang", "PhongAdmin", new {maks = ViewBag.ma})" class="Create-tang">+</a>
+    </li>
+
+</ul>
+

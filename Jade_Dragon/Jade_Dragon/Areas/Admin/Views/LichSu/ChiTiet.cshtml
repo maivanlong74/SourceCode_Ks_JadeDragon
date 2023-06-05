@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Jade_Dragon.Models.chitiethoadon>
+@{
+    ViewBag.Title = "ChiTiet";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<script src="~/Areas/Admin/Public/js/dataTables_min.js"></script>
+<link href="~/Areas/Admin/Public/css/Table.css" rel="stylesheet" />
+
+<div class="home">
+    <div class="body">
+        <h1 style=" color: wheat; margin-left: 40px;">
+            Chi tiết hóa đơn @Session["mahoadon"] | Khách hàng @Session["HoTen"]
+        </h1>
+        <i style="margin-left: 100px; color: aqua;">Tổng tiền: @Session["tongtien"] VND</i>
+        <table id="example" class="display">
+            <thead>
+                <tr>
+                    <th>Mã chi tiết hóa đơn</th>
+                    <th>Tên phòng</th>
+                    <th>Ngày đến</th>
+                    <th>Ngày đi</th>
+                    <th>Giá</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.MaChiTietHoaDon</td>
+                        <td>@item.phong.TenPhong</td>
+                        <td>@item.NgayDen</td>
+                        <td>@item.NgayDi</td>
+                        <td>@item.Gia</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Mã chi tiết hóa đơn</th>
+                    <th>Tên phòng</th>
+                    <th>Ngày đến</th>
+                    <th>Ngày đi</th>
+                    <th>Giá</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });</script>
+

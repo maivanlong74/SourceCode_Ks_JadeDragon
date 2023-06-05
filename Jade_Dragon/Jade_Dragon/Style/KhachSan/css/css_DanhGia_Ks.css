@@ -1,0 +1,109 @@
+﻿/*========= Đánh giá ===========*/
+.thongke-sao {
+    border: 2px solid yellow;
+    background: rgba(0,0,0,0.6);
+    width: 380px;
+    height: 230px;
+    text-align: center;
+    margin-left: 50px;
+}
+
+.tongsao {
+    margin-top: 15px;
+    color: wheat;
+    font-weight: 800;
+}
+
+.starss {
+    width: 50vh;
+    margin-top: 15px;
+    margin-left: 22px;
+    border: 1px solid wheat;
+    padding-top: 10px;
+}
+
+.sosao {
+    display: flex;
+    margin-left: 30px;
+}
+
+.sosao span {
+    padding-right: 10px;
+    color: white;
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.thuoc-sao {
+    width: 70%;
+}
+
+.thuoc-sao .starr {
+    height: 20px;
+    margin-bottom: 10px;
+    border: 1px solid white;
+}
+
+.thuoc-sao .star-a {
+    background-color: blueviolet;
+}
+
+    .thuoc-sao .star-b {
+        background-color: yellow;
+    }
+
+    .thuoc-sao .star-c {
+        background-color: burlywood;
+    }
+
+    .thuoc-sao .star-d {
+        background-color: cadetblue;
+    }
+
+    .thuoc-sao .star-e {
+        background-color: wheat;
+    }
+
+.statistics {
+    display: flex;
+    align-items: center;
+}
+
+.rating-count {
+    margin-right: 10px;
+}
+
+.dem {
+    margin-left: 5px;
+}
+
+/* ============================ */
+.rating {
+    font-size: 30px;
+    display: inline-block;
+    position: relative;
+}
+
+.star {
+    font-size: 30px;
+    cursor: pointer;
+    color: #ccc;
+    transition: color .25s ease-out;
+}
+
+.rated {
+    color: orange;
+}
+
+.rating:hover .star {
+    color: orange;
+}
+
+    .rating:hover .star:hover ~ .star {
+        color: #ccc;
+    }
+
+    .rating:hover .star:hover {
+        color: orange;
+    }
+/* ============================ */

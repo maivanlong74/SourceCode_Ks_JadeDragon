@@ -1,0 +1,56 @@
+﻿@model Jade_Dragon.Models.Ht_KhachSan
+
+@{
+    ViewBag.Title = "ThemAnh";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+<link href="~/Areas/Admin/Public/css/ThemAnhPhongKs.css" rel="stylesheet" />
+<div class="home">
+    <div class="home-body">
+        <h1>Phòng @Model.phks.TenPhong | Khách sạn @Model.phks.KhachSan.TenKhachSan</h1>
+        <div class="home-avt">
+            <form action="@Url.Action("ThemAnhPhong", "PhongAdmin")" method="post" enctype="multipart/form-data">
+                <button type="submit" class="button-them">Thêm ảnh</button>
+                <div class="List-anh">
+                    @if (Model.anhph.Count() > 0)
+                    {
+                        foreach (var i in Model.anhph)
+                        {
+                            <div class="anh-item">
+                                <div class="Close-anh" title="Xóa ảnh">
+                                    <a href="@Url.Action("XoaAnh", "PhongAdmin", new {maks = i.MaKhachSan, maph = i.MaPhong, maanh = i.MaAnhPhong})"><img src="~/Style/img/icon/icon-X.jpg" /></a>
+                                </div>
+                                <img src="~/UpLoad_Img/Phong/@i.LinkAnhPhong" class="anh-a" />
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="anh-item" style="text-align: center;">
+                            <h1 style="color: white; margin-top: 20vh;">Hiện chưa có ảnh!!!</h1>
+                        </div>
+                    }
+                    <div class="anh-them-item">
+                        <img src="img.png" id="img-avt" />
+                        <input type="file" class="input-them" id="input-them" name="uploadhinh" accept="image/*" />
+                    </div>
+                </div>
+                <input type="hidden" value="@Model.phks.MaKhachSan" name="maks"/>
+                <input type="hidden" value="@Model.phks.MaPhong" name="maph"/>
+            </form>
+        </div>
+        <a href="@Url.Action("DanhSachPhong", "PhongAdmin", new {MaKs = Model.phks.MaKhachSan})" class="quayve">
+            Quay về phòng khách sạn
+        </a>
+    </div>
+</div>
+
+<script>
+    const image = document.getElementById("img-avt");
+    var input = document.getElementById("input-them");
+
+    input.addEventListener("change", () => {
+        image.style.zIndex = "3";
+        image.src = URL.createObjectURL(input.files[0]);
+    });
+</script>

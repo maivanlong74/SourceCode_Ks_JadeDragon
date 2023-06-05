@@ -1,0 +1,538 @@
+﻿@model Jade_Dragon.Models.hienthiphong
+
+@{
+    ViewBag.Title = "TrangKhachSan";
+    Layout = "~/Views/Shared/TongHop.cshtml";
+}
+<head>
+    <link href="~/Style/css/ThanhCuon/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Style/css/ThanhCuon/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="~/Style/KhachSan/css/css_ThanhCuon_Ks.css" rel="stylesheet" />
+    <link href="~/Style/KhachSan/css/css_DanhGia_Ks.css" rel="stylesheet" />
+    <link href="~/Style/KhachSan/css/Search.css" rel="stylesheet" />
+    <link href="~/Style/KhachSan/css/HtAnhPhong.css" rel="stylesheet" />
+    <link href="~/Style/KhachSan/css/css__KhachSan.css" rel="stylesheet" />
+</head>
+<style>
+
+</style>
+<div class="home">
+    <div class="home__background">
+        <div class="grid wide">
+            <div class="row">
+                <div class="home__container__slider">
+                    <div class="search">
+                        <div class="grid wide">
+                            <div class="search__container">
+                                <div class="row">
+
+                                    <!-- ------------------ -->
+                                    <h1>
+                                        Jade Dragon sẽ mang đến cho bạn một trải nghiệm tuyệt
+                                        vời
+                                    </h1>
+                                    <!-- Tìm kiếm -->
+                                    <div class="timkiem">
+                                        <form method="get" action="@Url.Action("TrangKhachSan", "TrangKhachSan")" class="header-search hide-on-mb">
+                                            <div class="header-search__input-wrap">
+                                                <input type="text" class="header-search__input"
+                                                       placeholder="Search..." name="searchTerm">
+                                            </div>
+
+                                            <div class="Search Search-phong">
+                                                <select name="searchType" class="select-list">
+                                                    <option value="all">Tất cả</option>
+                                                    <option value="khachsan">Tên khách sạn</option>
+                                                    <option value="name">Tên phòng</option>
+                                                    <option value="gia">Giá</option>
+                                                </select>
+                                            </div>
+                                            <div class="header-search__btn">
+                                                <button type="submit">
+                                                    <i class="header-search__btn-icon fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <!-- DateTime -->
+                                    <form action="@Url.Action("TrangKhachSan", "TrangKhachSan")" method="post" class="DateTime">
+                                        <div class="search-time">
+                                            @if (Session["batdau"] == null)
+                                            {
+                                                <input type="datetime-local" name="batdau" required
+                                                       min="@ViewBag.time_now" max="@ViewBag.time_max" /> <br />
+                                                <input type="hidden" name="ma" value="@ViewBag.ma" />
+                                            }
+                                            else
+                                            {
+                                                if (Session["DongTime"] != null)
+                                                {
+                                                    <input placeholder="@Session["batdau"]" type="text" onfocus="(this.type='datetime-local')"
+                                                           onblur="(this.type='text')" name="batdau" required value="@Session["batdau"]"
+                                                           min="@ViewBag.time_now" max="@ViewBag.time_max" /> <br />
+                                                    <input type="hidden" name="ma" value="@ViewBag.ma" />
+                                                }
+                                                else
+                                                {
+                                                    <input placeholder="@Session["batdau"]" name="batdau"
+                                                           required value="@Session["batdau"]" readonly /> <br />
+                                                    <input type="hidden" name="ma" value="@ViewBag.ma" />
+                                                }
+                                                <input type="hidden" value="@Session["DongTime"]" />
+
+                                            }
+                                            <label>Ngày đến</label>
+                                        </div>
+                                        <div class="search-time">
+                                            @if (Session["ketthuc"] == null)
+                                            {
+                                                <input type="datetime-local" name="ketthuc" required
+                                                       min="@ViewBag.time_now" max="@ViewBag.time_max" /> <br />
+                                                <input type="hidden" name="ma" value="@ViewBag.ma" />
+                                            }
+                                            else
+                                            {
+                                                if (Session["DongTime"] != null)
+                                                {
+                                                    <input placeholder="@Session["ketthuc"]" type="text" onfocus="(this.type='datetime-local')"
+                                                           onblur="(this.type='text')" name="ketthuc" required value="@Session["ketthuc"]"
+                                                           min="@ViewBag.time_now" max="@ViewBag.time_max" /><br />
+                                                    <input type="hidden" name="ma" value="@ViewBag.ma" />
+                                                }
+                                                else
+                                                {
+                                                    <input placeholder="@Session["ketthuc"]" name="ketthuc"
+                                                           required value="@Session["ketthuc"]" readonly /> <br />
+                                                    <input type="hidden" name="ma" value="@ViewBag.ma" />
+                                                }
+                                            }
+                                            <label>Ngày trả</label>
+                                        </div>
+                                        @if (Session["DongTime"] != null)
+                                        {
+                                            <div class="search-time">
+                                                <button type="submit">Cập nhật</button> <br />
+                                                <a href="@Url.Action("QuayVe", "TrangKhachSan", new {maks = ViewBag.ma})" class="button">Quay về ngày hôm nay</a>
+                                            </div>
+                                        }
+                                    </form>
+                                </div>
+                                <!--------------------->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Content" id="danhmucsp">
+                        <div class="menu">
+                            <div class="menu-top">
+                                @if (Session["SESSION_GROUP"] != null)
+                                {
+                                    <div class="menu-top-a">
+                                        <div class="avt-img">
+                                            <img src="~/UpLoad_Img/KhachHang/@Session["Avt"]" />
+                                        </div>
+                                        <i>@Session["HoTen"]</i>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="menu-top-a">
+                                        <div class="avt-img">
+                                            <img src="~/Style/img/avt/logo.jpg" />
+                                        </div>
+                                        <i style=" font-size: 20px; display: block; padding-top: 6px;">
+                                            <a href="@Url.Action("Login", "Account", new { area = "Admin" })">Đăng nhập</a>
+                                            <a>/</a>
+                                            <a href="@Url.Action("SignUpp", "Account", new { area = "Admin" })">Đăng ký tài khoản</a>
+                                        </i>
+                                    </div>
+                                }
+                            </div>
+                            <div class="list-menu">
+                                <ul>
+
+                                    <li class="top-menu">
+                                        <a class="menu-item item--a" href="@Url.Action("DatPhong", "GioHang", new {maks= Session["MaKhachSanPhong"], sodem= Session["sodem"]})"
+                                           style="border-right: 2px solid;">
+                                            <img src="/Style/img/icon/icon-Cart.jpg" title="Giỏ Hàng" />
+                                            @if (Session["TongSoLuong"] == null)
+                                            {
+
+
+                                                <i style="color: white;">(0)</i>
+                                            }
+                                            else
+                                            {
+                                                <i style="color: white;">(@Session["TongSoLuong"])</i>
+                                            }
+
+                                        </a>
+                                        <a class="menu-item item--b" href="/GioHang/LichSu?makh=@Session["MaNguoiDung"]">
+                                            <img src="/Style/img/icon/icon-ls.jpg" title="Lịch sử" />
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <span>Khách sạn</span>
+                                        <i class="header-search__select-icon fas fa-angle-down"></i>
+                                        <ul class="list list-ks">
+                                            @foreach (var item in Model.ks)
+                                            {
+                                                <li>
+                                                    <a href="@Url.Action("TrangKhachSan", "TrangKhachSan", new {maks = item.MaKhachSan, batdau = Session["batdau"], ketthuc = Session["ketthuc"]})">
+                                                        @item.TenKhachSan
+                                                    </a>
+                                                </li>
+
+                                            }
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span>Loại hình</span>
+                                        <i class="header-search__select-icon fas fa-angle-down"></i>
+                                        <ul class="list">
+                                            @foreach (var loai in Model.ctphong.Select(p => p.LoaiHinh).Distinct())
+                                            {
+                                                <li>
+                                                    <a href="@Url.Action("TrangKhachSan", "TrangKhachSan", new { loai = loai, batdau = Session["batdau"], ketthuc = Session["ketthuc"], maks = ViewBag.ma })">
+                                                        @loai
+                                                    </a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span>Giá</span>
+                                        <i class="header-search__select-icon fas fa-angle-down"></i>
+                                        <ul class="list">
+                                            @foreach (var gia in Model.ctphong.Select(p => p.Gia).Distinct())
+                                            {
+                                                <li>
+                                                    <a href="@Url.Action("TrangKhachSan", "TrangKhachSan", new { gia = gia, batdau = Session["batdau"], ketthuc = Session["ketthuc"], maks = ViewBag.ma })">
+                                                        @gia
+                                                    </a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span>VIP</span>
+                                        <i class="header-search__select-icon fas fa-angle-down"></i>
+                                        <ul class="list">
+                                            <li><a href="@Url.Action("TrangKhachSan", "TrangKhachSan", new {vip = "True", batdau = Session["batdau"], ketthuc = Session["ketthuc"], maks = ViewBag.ma})">VIP</a></li>
+                                            <li><a href="@Url.Action("TrangKhachSan", "TrangKhachSan", new {vip = "False", batdau = Session["batdau"], ketthuc = Session["ketthuc"], maks = ViewBag.ma})">Thường</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span>Trạng thái</span>
+                                        <i class="header-search__select-icon fas fa-angle-down"></i>
+                                        <ul class="list">
+                                            <li><a href="@Url.Action("TrangKhachSan", "TrangKhachSan", new {trangthai = "True", batdau = Session["batdau"], ketthuc = Session["ketthuc"], maks = ViewBag.ma})">Còn trống</a></li>
+                                            <li><a href="@Url.Action("TrangKhachSan", "TrangKhachSan", new {trangthai = "False", batdau = Session["batdau"], ketthuc = Session["ketthuc"], maks = ViewBag.ma})">Đã có khách</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="Content-body">
+                            <div class="info_khachsan">
+                                <div class="ks-thanhcuon">
+                                    <section class="slider owl-carousel owl-theme">
+                                        @if (Model.AnhKs.Count() > 0)
+                                        {
+                                            foreach (var anh in Model.AnhKs)
+                                            {
+                                                <div class="slider-item slider-item-one"
+                                                     style="background-image: url('../../UpLoad_Img/KhachSan/@anh.LinkAnhKhachSan');">
+                                                </div>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <div class="slider-item slider-item-one" style="background: black;"></div>
+                                        }
+                                    </section>
+                                    <div class="info-kss">
+                                        <div class="name-ks">
+                                            <h1>Khách sạn @Model.htks.TenKhachSan</h1>
+                                        </div>
+                                        <div style="display: flex; margin-top: 30px;">
+                                            <div class="info-ks-item">
+                                                <p>Dịa chỉ @Model.htks.DiaChi</p>
+                                                <p>Số điện thoại: @Model.htks.SoDienThoai</p>
+                                                <p>Gmail @Model.htks.Gmail</p>
+
+                                                @if (Session["MaNguoiDung"] != null)
+                                                {
+                                                    if (ViewBag.danhgia != null)
+                                                    {
+                                                        <form action="" method="post" id="form-danhgia">
+                                                            <div class="rating">
+                                                                <span class="star" data-rating="1">&#9733;</span>
+                                                                <span class="star" data-rating="2">&#9733;</span>
+                                                                <span class="star" data-rating="3">&#9733;</span>
+                                                                <span class="star" data-rating="4">&#9733;</span>
+                                                                <span class="star" data-rating="5">&#9733;</span>
+                                                                <input type="hidden" name="rating" class="rating-value" value="@ViewBag.danhgia">
+                                                                <input type="hidden" id="maks" class="maks" name="maks" value="@Model.htks.MaKhachSan" />
+                                                            </div>
+                                                        </form>
+                                                    }
+                                                    else
+                                                    {
+                                                        <form action="~/TrangKhachSan/DanhGia" method="post" id="form-danhgia">
+                                                            <div class="rating">
+                                                                <span class="star" data-rating="1">&#9733;</span>
+                                                                <span class="star" data-rating="2">&#9733;</span>
+                                                                <span class="star" data-rating="3">&#9733;</span>
+                                                                <span class="star" data-rating="4">&#9733;</span>
+                                                                <span class="star" data-rating="5">&#9733;</span>
+                                                                <input type="hidden" name="SoSao" class="rating-value" value="">
+                                                                <input type="hidden" id="maks" class="maks" name="maks" value="@Model.htks.MaKhachSan" />
+                                                                <input type="hidden" id="makh" class="makh" name="makh" value="@Session["MaNguoiDung"]" />
+                                                            </div>
+                                                            <button type="submit" class="button-danhgia">Đánh giá</button>
+                                                        </form>
+                                                    }
+                                                }
+
+                                            </div>
+
+                                            @if (Model.tkdg.Count() > 0)
+                                            {
+                                                var thongke = Model.tkdg.FirstOrDefault(m => m.MaKhachSan == Model.htks.MaKhachSan);
+                                                if (thongke.TongSao == 0)
+                                                {
+                                                    <div class="thongke-sao">
+                                                        <div class="tongsao"><span>Tổng <span class="rating-count">0</span>lượt đánh giá</span></div>
+                                                        <div class="starss">
+                                                            <div class="sosao">
+                                                                <span>1 sao</span>
+                                                                <div class="thuoc-sao"><div class="starr star-a" style="width: 0%;"></div></div>
+                                                                <span class="dem"></span>
+                                                            </div>
+                                                            <div class="sosao">
+                                                                <span>2 sao</span>
+                                                                <div class="thuoc-sao"><div class="starr star-b" style="width: 0%;"></div></div>
+                                                                <span class="dem"></span>
+                                                            </div>
+                                                            <div class="sosao">
+                                                                <span>3 sao</span>
+                                                                <div class="thuoc-sao"><div class="starr star-c" style="width: 0%;"></div></div>
+                                                                <span class="dem"></span>
+                                                            </div>
+                                                            <div class="sosao">
+                                                                <span>4 sao</span>
+                                                                <div class="thuoc-sao"><div class="starr star-d" style="width: 0%;"></div></div>
+                                                                <span class="dem"></span>
+                                                            </div>
+                                                            <div class="sosao">
+                                                                <span>5 sao</span>
+                                                                <div class="thuoc-sao"><div class="starr star-e" style="width: 0%;"></div></div>
+                                                                <span class="dem"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="thongke-sao">
+                                                        <div class="tongsao"><span>Tổng <span class="rating-count">@thongke.TongSao</span>lượt đánh giá</span></div>
+                                                        <div class="starss">
+                                                            <div class="sosao">
+                                                                <span>1 sao</span>
+                                                                <div class="thuoc-sao"><div class="starr star-a" style="width: @(thongke.MotSao * (100M / thongke.TongSao))@("%;")"></div></div>
+                                                                <span class="dem">@thongke.MotSao</span>
+                                                            </div>
+                                                            <div class="sosao">
+                                                                <span>2 sao</span>
+                                                                <div class="thuoc-sao"><div class="starr star-b" style="width: @((decimal)(thongke.HaiSao * (100M / thongke.TongSao)))@("%;")"></div></div>
+                                                                <span class="dem">@thongke.HaiSao</span>
+                                                            </div>
+                                                            <div class="sosao">
+                                                                <span>3 sao</span>
+                                                                <div class="thuoc-sao"><div class="starr star-c" style="width: @((decimal)(thongke.BaSao * (100M / thongke.TongSao)))@("%;")"></div></div>
+                                                                <span class="dem">@thongke.BaSao</span>
+                                                            </div>
+                                                            <div class="sosao">
+                                                                <span>4 sao</span>
+                                                                <div class="thuoc-sao"><div class="starr star-d" style="width: @((decimal)(thongke.BonSao * (100M / thongke.TongSao)))@("%;")"></div></div>
+                                                                <span class="dem">@thongke.BonSao</span>
+                                                            </div>
+                                                            <div class="sosao">
+                                                                <span>5 sao</span>
+                                                                <div class="thuoc-sao"><div class="starr star-e" style="width: @((decimal)(thongke.NamSao * (100M / thongke.TongSao)))@("%;")"></div></div>
+                                                                <span class="dem">@thongke.NamSao</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="info_phong">
+                                <div class="name-phong">
+                                    <h1>Thông tin phòng</h1>
+                                </div>
+                                <div class="tour" style="margin-top: 0px;">
+                                    <div class="grid wide" style="margin-top: -80px;">
+                                        <div class="tour__container">
+                                            <div class="tour__container__items">
+                                                <div class="pagination">
+                                                    <button onclick="previousPage()" class="phong-lui">Previous</button>
+                                                    <span id="currentPage" style="margin-left: 10px; color: white;"></span>
+                                                    <span>/</span>
+                                                    <span id="totalPages" style="color: white;"></span>
+                                                    <button onclick="nextPage()" class="phong-tien">Next</button>
+                                                </div>
+                                                <div class="row" id="listPhong">
+
+                                                    @foreach (var i in Model.ph)
+                                                    {
+                                                        <div class="col l-4 m-12 c-12">
+                                                            <div class="tour__container__item">
+                                                                <div class="item__overlay"></div>
+                                                                @if (Model.AnhPhong != null)
+                                                                {
+                                                                    var Anh = Model.AnhPhong.FirstOrDefault(s => s.MaPhong == i.MaPhong);
+                                                                    if (Anh != null)
+                                                                    {
+                                                                        <div class="item__background" style="background-image: url('../../upload_img/Phong/@Anh.LinkAnhPhong');"></div>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <div class="item__background" style="background: black;"></div>
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    <div class="item__background" style="background: black;"></div>
+                                                                }
+                                                                <div class="item__content">
+                                                                    <span class="item_date">Khách sạn @i.KhachSan.TenKhachSan</span>
+                                                                    <div class="item_center">
+                                                                            <p style="font-size: 55px; cursor: pointer;">
+                                                                                @i.TenPhong
+                                                                            </p>
+                                                                        <div class="item_price">Phòng @i.LoaiHinh | Giá: @i.Gia</div>
+                                                                        @if (i.KhoaPhong == true)
+                                                                        {
+                                                                            <i>Phòng đang bảo trì</i>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            if (i.TrangThai == true)
+                                                                            {
+
+                                                                                <i>Còn phòng</i>
+                                                                                <div class="tour__item--btn">
+                                                                                    <div class="tour__btn__bgc"></div>
+                                                                                    <a href="@Url.Action("AddItem", "GioHang", new {maph = i.MaPhong, soluong = 1,
+                                                                                            ngayden = Session["ngayden"], ngaydi = Session["ngaydi"],
+                                                                                            batdau = Session["batdau"], ketthuc = Session["ketthuc"]})">
+                                                                                        Đặt phòng
+                                                                                        <span></span>
+                                                                                        <span></span>
+                                                                                        <span></span>
+                                                                                    </a>
+                                                                                </div>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <i>Hết phòng</i>
+                                                                            }
+                                                                        }
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+
+                                                    @*@if (Model.AnhPhong != null)
+                                                    {
+                                                        <div class="anhphongks">
+                                                            <div class="close-anh"><button>Tắt</button></div>
+                                                            <div class="list_anhphong">
+                                                                @foreach (var s in Model.AnhPhong)
+                                                                {
+                                                                    <div class="anhphong-item"><img src="~/UpLoad_Img/Phong/@s.LinkAnhPhong" alt=""></div>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>*@
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            @if (Model.cmt.Count() > 0)
+                            {
+                                <div class="danhgia_ks">
+                                    <div class="binhluan">
+                                        <form action="~/nhanxet/Create" method="post" class="cmt">
+                                            <input type="text" placeholder="Mời bạn nhận xét" name="NoiDung" class="noidung-cmt">
+                                            <input type="hidden" value="" name="MaKh" id="MaKh" />
+                                            <button type="submit" class="button-cmt">Gửi</button>
+                                        </form>
+                                    </div>
+                                    <div class="list-binhluan">
+                                        <div class="phantrang-cmt">
+                                            <button onclick="LuiTrang()" class="cmt-lui">Previous</button>
+                                            <span id="TrangSau" style="margin-left: 10px; color: white;"></span>
+                                            <span>/</span>
+                                            <span id="TrangTruoc" style="color: white;"></span>
+                                            <button onclick="TienTrang()" class="cmt-tien">Next</button>
+                                        </div>
+
+                                        <div class="ht-cmt">
+
+                                            @foreach (var o in Model.cmt)
+                                            {
+                                                <div class="ht-cmt-item">
+                                                    <i>@o.NguoiDung.HoTen</i>
+                                                    <span>@o.NoiDung</span>
+                                                </div>
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="danhgia_ks">
+                                    <div class="binhluan">
+                                        <div class="cmt" style="text-align: center;">
+                                            <h1>Nhận xét</h1>
+                                        </div>
+                                    </div>
+                                    <div class="list-binhluan" style="text-align: center;">
+                                        <h1 style="color: white;">Chưa có bình luận</h1>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="/Style/css/ThanhCuon/owl.carousel.min.js"></script>
+<script src="/Style/css/ThanhCuon/Js_Cuon.js"></script>
+@*<script src="~/Style/KhachSan/js/DanhGia_Ks.js"></script>*@
+<script src="~/Style/KhachSan/js/PhanTrang_NhanXet.js"></script>
+<script src="~/Style/KhachSan/js/PhanTrang_Phong.js"></script>

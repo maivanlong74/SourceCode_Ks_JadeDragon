@@ -1,0 +1,351 @@
+﻿body {
+    background: url(/Style/img/nen.jpg);
+    background-size: cover;
+}
+
+.name-ks {
+    font-size: 30px;
+    font-weight: 700;
+    color: white;
+    display: block;
+    height: 60px;
+    background: rgba(0,0,0,0.7);
+    padding-left: 50px;
+    padding-top: 5px;
+}
+
+.home {
+    left: 270px;
+    top: 0px;
+    transition: var(--tran-05);
+    width: 165vh;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+    .home::-webkit-scrollbar {
+        width: 10px;
+        transition: width 0.5s ease-in-out;
+    }
+
+    .home::-webkit-scrollbar {
+        width: 25px;
+        border: 1px solid wheat;
+        border-radius: 10px;
+    }
+
+    .home::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: #2c3e50;
+        height: 30px;
+        border: 1px solid yellow;
+    }
+
+    .home .tangks {
+        text-align: center;
+        margin-top: 20px;
+        margin-left: 10px;
+        width: 98%;
+        height: 25vh;
+        background: rgba(0,0,0,0.7);
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+        border-radius: 20px;
+        border-bottom: 4px solid black;
+        border-right: 4px solid black;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
+        .home .tangks::-webkit-scrollbar {
+            width: 10px;
+            transition: width 0.5s ease-in-out;
+        }
+
+        .home .tangks::-webkit-scrollbar {
+            width: 25px;
+            border: 1px solid wheat;
+            border-radius: 10px;
+        }
+
+        .home .tangks::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-color: #2c3e50;
+            height: 30px;
+            border: 1px solid yellow;
+        }
+
+        .home .tangks .Create-tang {
+            text-decoration: none;
+            color: yellow;
+            font-size: 100px;
+            display: block;
+            height: 100%;
+            margin-top: -20px;
+        }
+
+            .home .tangks .Create-tang:hover {
+                color: #fd79a8;
+            }
+
+        /* -------------------------------------------- */
+
+        .home .tangks .list-phong {
+            margin-top: 10px;
+            width: 100%;
+            height: 85%;
+            list-style: none;
+            display: flex;
+        }
+
+            .home .tangks .list-phong .name-tang {
+                flex-shrink: 0;
+                width: 20vh;
+                background: black;
+                border-radius: 20px;
+                text-align: center;
+                border: 1px solid wheat;
+            }
+
+            .home .tangks .list-phong .name-tang h1 {
+                padding-top: 6vh;
+                color: wheat;
+            }
+
+.list-phong .name-tang .delete-tang {
+    text-decoration: none;
+    border: 1px solid yellow;
+    padding: 6px;
+    color: yellow;
+}
+
+.list-phong .name-tang .delete-tang:hover {
+    background: #2c3e50;
+}
+            /* -------------------------------------------- */
+
+            .home .tangks .list-phong .list-phong-item {
+                flex-shrink: 0;
+                border: 1px solid yellow;
+                border-radius: 20px;
+                width: 25vh;
+                margin-left: 7px;
+                margin-right: 7px;
+                background: rgba(0, 0, 0, 0.5);
+                text-align: center;
+            }
+
+            .home .tangks .list-phong .phongdat {
+                background: wheat;
+                border: 1px solid black;
+            }
+
+            .home .tangks .list-phong .list-phong-item .Create {
+                text-decoration: none;
+                color: yellow;
+                font-size: 100px;
+            }
+
+                .home .tangks .list-phong .list-phong-item .Create:hover {
+                    color: #fd79a8;
+                }
+
+            .home .tangks .list-phong .list-phong-item .info-phong {
+                border-bottom: 1px solid wheat;
+                border-radius: 20px;
+                height: 80%;
+                cursor: pointer;
+            }
+
+                .home .tangks .list-phong .list-phong-item .info-phong:hover {
+                    background: black;
+                }
+
+            .home .tangks .list-phong .list-phong-item h1 {
+                padding-top: 25px;
+                color: white;
+            }
+
+            .home .tangks .list-phong .list-phong-item i {
+                color: white;
+            }
+
+/* -------Form--------------- */
+.form {
+    background: wheat;
+    width: 40vh;
+    height: auto;
+    position: absolute;
+    z-index: 996;
+    margin-left: -60px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-bottom: 5px solid;
+    border-right: 3px solid;
+    display: none;
+}
+
+.info-phong:hover .form {
+    display: block;
+}
+
+.form form {
+    border: 1px solid black;
+}
+
+form .info-phong-item {
+    text-align: initial;
+}
+
+    form .info-phong-item label {
+        margin-left: 20px;
+    }
+
+    form .info-phong-item .input {
+        margin-left: 40px;
+        width: 205px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    form .info-phong-item .vip label {
+        margin-left: 40px;
+    }
+
+form .button-dk {
+    padding-bottom: 10px;
+}
+
+    form .button-dk button {
+        padding: 0px 15px 0px 15px;
+        cursor: pointer;
+    }
+
+.hoadon .hd-khachhang {
+    border: 1px solid;
+    position: relative;
+    z-index: 999;
+}
+
+    /* -------Check In - Out --------- */
+    .hoadon .hd-khachhang .Check-InOut {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 997;
+        display: none;
+    }
+
+        .hoadon .hd-khachhang .Check-InOut .Check-Check {
+            color: wheat;
+            text-decoration: none;
+            position: absolute;
+            margin-left: -40px;
+            margin-top: 20px;
+            background: black;
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+    .hoadon .hd-khachhang:hover .Check-InOut {
+        display: block;
+        background: rgba(0,0,0,0.6);
+    }
+
+        .hoadon .hd-khachhang:hover .Check-InOut .Check-Check:hover {
+            background: rgba(0, 0, 0, 0.8);
+            font-weight: 700;
+        }
+/* -------------------------- */
+
+
+.home .tangks .list-phong .list-phong-item .khoaphong {
+    height: 20%;
+}
+
+    .home .tangks .list-phong .list-phong-item .khoaphong a {
+        color: wheat;
+        text-decoration: none;
+        width: 100%;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        display: block;
+    }
+
+        .home .tangks .list-phong .list-phong-item .khoaphong a:hover {
+            background: black;
+            font-weight: 600;
+        }
+
+/* ===================== */
+.home .tangks .list-phong .phongdat .info-phong {
+    border: 1px solid black;
+}
+
+.home .tangks .list-phong .phongdat h1,
+.home .tangks .list-phong .phongdat i,
+.home .tangks .list-phong .phongdat .khoaphong a {
+    color: black;
+}
+
+.home .tangks .list-phong .phongdat .info-phong:hover {
+    background: black;
+}
+
+    .home .tangks .list-phong .phongdat .info-phong:hover h1,
+    .home .tangks .list-phong .phongdat .info-phong:hover i {
+        color: wheat;
+    }
+
+.home .tangks .list-phong .phongdat .khoaphong:hover a {
+    background: black;
+    color: wheat;
+}
+
+/* ==========Phòng đã khóa============== */
+.home .tangks .list-phong .phongkhoa {
+    background: #341f97;
+    position: relative;
+}
+
+    .home .tangks .list-phong .phongkhoa i {
+        display: block;
+        color: white;
+        padding-top: 55px;
+    }
+
+    .home .tangks .list-phong .phongkhoa .phongkhoa-item {
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        z-index: 995;
+        margin-top: -80px;
+        border-radius: 20px;
+        text-align: center;
+    }
+
+        .home .tangks .list-phong .phongkhoa .phongkhoa-item a {
+            text-decoration: none;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 3px 0px 3px 0px;
+            border: 1px solid wheat;
+            margin-top: 50px;
+            display: none;
+        }
+
+    .home .tangks .list-phong .phongkhoa:hover i {
+        color: #341f97;
+    }
+
+    .home .tangks .list-phong .phongkhoa:hover .phongkhoa-item a {
+        display: block;
+    }
+
+    .home .tangks .list-phong .phongkhoa .phongkhoa-item a:hover {
+        background: #130f40;
+        font-weight: 600;
+    }
+/* ===================================== */

@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@Page.Title</title>
+    <link rel="shortcut icon" href="~/Style/img/avt/logo.jpg">
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
+    <script src="https://openlayers.org/en/v4.6.5/build/ol.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+
+
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link href="~/Areas/Admin/Public/css/admin.css" rel="stylesheet" />
+    <script src="~/Areas/Admin/Public/js/js_jquery.js"></script>
+    <link href="~/Areas/Admin/Public/css/css_khach_hang.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Public/css/css_chuc_nang.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Public/css/Search.css" rel="stylesheet" />
+    @RenderSection("head", required: false)
+</head>
+<body>
+    <nav class="sidebar">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="~/Style/img/avt/logo.jpg" />
+                </span>
+
+                <a class="text logo-text" href="" style="text-decoration:none;">
+                    <span class="name">Hello: @Session["HoTen"]</span>
+                    <span class="profession">Jade Dragon</span>
+                </a>
+            </div>
+
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+
+                <li class="search-box">
+                    <i class='bx bx-search icon'></i>
+                    <input type="text" placeholder="Search...">
+                </li>
+
+                <ul class="menu-links">
+
+                    <li class="nav-link">
+                        <a href="@Url.Action("QuanLyKhManage", "QLKhachHang")">
+                            <i class='bx bx-user-x icon'></i>
+                            <span class="text nav-text">Xem khách hàng</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        @if (Session["MaKhachSan_ks"] != null)
+                        {
+                            <a href="@Url.Action("EditManage", "QLKhachSan", new { id = Session["MaKhachSan_ks"] })">
+                                <i class='bx bx-camera-home icon'></i>
+                                <span class="text nav-text">Quản lý khách sạn</span>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("CreateManage", "QLKhachSan")">
+                                <i class='bx bx-camera-home icon'></i>
+                                <span class="text nav-text">Tạo khách sạn</span>
+                            </a>
+                        }
+
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="@Url.Action("LichSuManage", "LichSu", new {id = Session["MaKhachSan_ks"] })">
+                            <i class='bx bx-pie-chart-alt icon'></i>
+                            <span class="text nav-text">Thống kê</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="@Url.Action("PhanHoiManage", "PhanHoi", new {id = Session["MaKhachSan_ks"] })">
+                            <i class='bx bx-comment icon'></i>
+                            <span class="text nav-text">Phản hồi</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="@Url.Action("TinNhanManage", "TinNhanAdmin")">
+                            <i class='bx bx-send icon'></i>
+                            <span class="text nav-text">Tin nhắn</span>
+                        </a>
+                    </li>
+
+                    @if (Session["MaKhachSan_ks"] != null)
+                    {
+                        <li class="nav-link">
+                            <a href="@Url.Action("DanhSachPhong", "PhongManage", new {MaKs = Session["MaKhachSan_ks"]})">
+                                <i class='bx bx-send icon'></i>
+                                <span class="text nav-text">Quản lý phòng</span>
+                            </a>
+                        </li>
+                    }
+                    @if (Session["MaKhachSan_ks"] != null)
+                    {
+                        <li class="nav-link">
+                            <a href="@Url.Action("DanhSachDon", "XacNhanDonManage", new {maks = Session["MaKhachSan_ks"]})">
+                                <i class='bx bx-select-multiple icon'></i>
+                                <span class="text nav-text">Xác Nhận</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="">
+                    <a href="@Url.Action("SignOut", "Account")">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Thoát</span>
+                    </a>
+                </li>
+
+            </div>
+        </div>
+    </nav>
+    @RenderBody()
+
+    @if (TempData["WebMsgBox"] != null && (bool)TempData["WebMsgBox"] == true)
+    {
+        <script type="text/javascript">
+            alert('@Html.Raw(TempData["Message"])');
+        </script>
+    }
+
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+
+        window.addEventListener('load', function () {
+            var danhmucsp = document.querySelector('.danhmucsp');
+            danhmucsp.scrollIntoView({ behavior: 'smooth' });
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,408 @@
+﻿
+.home .body {
+    margin-left: 20px;
+    width: 1096px;
+}
+
+.item-chat {
+    height: 78vh;
+    width: 206vh;
+    background: rgba(0,0,0,0.4);
+}
+
+.body-chat {
+    background-color: wheat;
+    width: 100%;
+    height: 100%;
+    margin-left: 0px;
+    border: 5px solid black;
+}
+
+.body-item-chat {
+    height: 80%;
+    display: flex;
+}
+
+    .body-item-chat .list-chat {
+        background: black;
+        width: 30%;
+        height: 98vh;
+    }
+
+    .body-item-chat .htchat {
+        height: 73vh;
+        width: 70%;
+        border: 1px solid black;
+    }
+
+    .body-item-chat .htchat div {
+        background-color: black;
+        height: 7%;
+        color: wheat;
+    }
+
+    .body-item-chat .htchat div i {
+        color: wheat;
+        font-weight: 800;
+        padding-left: 30px;
+        padding-right: 30px;
+        border: 1px solid;
+    }
+
+    .body-item-chat .htchat ul {
+        width: 100%;
+        height: 100%;
+        list-style: none;
+        background: white;
+        word-wrap: break-word;
+        overflow: auto;
+    }
+
+        .body-item-chat .htchat ul::-webkit-scrollbar {
+            width: 10px;
+            transition: width 0.5s ease-in-out;
+        }
+
+        .body-item-chat .htchat ul:hover::-webkit-scrollbar {
+            width: 25px;
+        }
+
+        .body-item-chat .htchat ul::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-color: #2c3e50;
+            height: 30px;
+        }
+
+        .body-item-chat .htchat ul::-webkit-scrollbar-track {
+            background-color: #95a5a6;
+            border: 2px solid black;
+            border-radius: 10px;
+        }
+
+.body-chat .list-chat #Create_Room li .btnChatPhong {
+    width: 230px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: none;
+    color: wheat;
+    cursor: pointer;
+}
+
+/*---------Create---------------*/
+
+.list-chat .list-Group .hidden {
+    display: none;
+}
+
+.list-chat .list-Group li .input {
+    height: 35px;
+    width: 190px;
+    border: 1px solid;
+    background: none;
+    color: white;
+    text-align: center;
+}
+
+.list-chat .list-Group li .button {
+    width: 60px;
+}
+
+/*---------------------------*/
+
+        .list-chat ul {
+        list-style: none;
+        border: 1px solid white;
+        height: 80%;
+        overflow: auto;
+    }
+
+    .list-chat .list-chat-a span {
+        display: block;
+        color: wheat;
+        font-weight: 800;
+        padding-top: 10px;
+        padding-left: 10px;
+        border: 1px solid yellow;
+        background: #2f3542;
+    }
+
+    .list-chat .list-chat-a li {
+        color: white;
+    }
+
+    .list-chat .list-chat-a li:hover {
+        cursor: pointer;
+        padding-left: 10px;
+        background: #130f40;
+    }
+
+.list-chat .list-chat-a ul::-webkit-scrollbar {
+    width: 20px;
+}
+
+.list-chat .list-chat-a ul::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #2c3e50;
+    height: 20px;
+}
+
+.list-chat .list-chat-a ul::-webkit-scrollbar-track {
+    background-color: #95a5a6;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+/*---------------------------*/
+
+    .list-chat .list-Group {
+        height: 40%;
+    }
+
+    .list-chat .list-Group span{
+        height: 20%;
+    }
+
+    .list-chat .list-Group ul{
+        height: 80%;
+    }
+
+    .list-chat .list-Group li {
+        display: flex;
+    }
+
+    .list-chat .list-Group li:hover {
+    }
+.body-chat .list-chat #Create_Room li .btnDelete {
+    width: 30px;
+    display: none;
+}
+
+    .body-chat .list-chat #Create_Room li .btnDelete img {
+        width: 30px;
+    }
+
+.body-chat .list-chat #Create_Room li:hover .btnDelete {
+    display: block;
+}
+/*------------------------------*/
+
+    .list-chat .list-User {
+        height: 55%;
+    }
+
+    .list-chat .list-User span{
+        height: 10%;
+    }
+
+    .list-chat .list-User ul{
+        height: 90%;
+    }
+
+    .list-chat .list-User li {
+    }
+
+    .list-chat .list-User li:hover {
+    }
+
+/*--------------------------------*/
+
+.body-item-chat ul li {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 30px;
+    color: black;
+}
+
+    .body-item-chat ul li i {
+        font-weight: 700;
+        margin-right: 10px;
+    }
+
+.body-send-chat {
+    display: flex;
+    background: black;
+    height: 20%;
+    width: 756px;
+    margin-left: 325px;
+}
+
+    .body-send-chat input, button {
+        height: 35px;
+    }
+
+        .body-send-chat input.txtchat {
+            margin-top: 65px;
+            margin-left: 25px;
+            width: 90vh;
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            padding-left: 15px;
+            color: black;
+            border: 1px solid wheat;
+        }
+
+        .body-send-chat input.txtchat::placeholder {
+            color: black;
+        }
+
+    .body-send-chat button.txtchat {
+        margin-left: 0px;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        border: 1px solid wheat;
+        margin-top: 65px;
+        width: 60px;
+        cursor: pointer;
+    }
+
+    .body-send-chat button.txtchat:hover {
+        background: #535c68;
+    }
+
+    .body-send-chat button.txtchat img{
+        height: 100%;
+    }
+
+    .body-send-chat button.txtchat:hover img{
+        width: 40px;
+    }
+        /*-----------Hiển thị tin nhắn--------------------*/
+        .body-item-chat .htchat #contentMsg .timenow {
+            text-align: center;
+        }
+
+    .body-item-chat .htchat #contentMsg li {
+        color: black;
+        margin-top: 5px;
+        width: auto;
+        word-wrap: break-word;
+    }
+
+        .body-item-chat .htchat #contentMsg li p {
+            margin-bottom: 0;
+            font-weight: 800;
+        }
+
+        .body-item-chat .htchat #contentMsg li span {
+            display: inline-block;
+            width: auto;
+            max-width: 300px;
+            white-space: break-spaces;
+            padding: 10px;
+            border-radius: 15px;
+        }
+
+        .body-item-chat .htchat #contentMsg li img {
+            max-width: 150px;
+            max-height: 150px;
+            border: 1px solid black;
+        }
+
+    .body-item-chat .htchat #contentMsg .you {
+        text-align: left;
+    }
+
+    .body-item-chat .htchat #contentMsg .me {
+        text-align: right;
+    }
+
+    .body-item-chat .htchat #contentMsg .you p {
+        margin-left: 15px;
+    }
+
+    .body-item-chat .htchat #contentMsg .you span {
+        margin-left: 15px;
+        color: black;
+        border: 1px solid black;
+    }
+
+    .body-item-chat .htchat #contentMsg .me span {
+        margin-right: 15px;
+        background-color: blueviolet;
+        color: wheat;
+        border: 1px solid white;
+    }
+
+/*------------------*/
+
+.list-chat .list-Group li {
+    display: flex;
+}
+
+.body-chat .list-chat #Create_Room li .btnDelete {
+    width: 30px;
+    display: none;
+}
+
+    .body-chat .list-chat #Create_Room li .btnDelete img {
+        width: 30px;
+    }
+
+.body-chat .list-chat #Create_Room li:hover .btnDelete {
+    display: block;
+}
+
+.body-chat .list-chat ul li button {
+    width: 230px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: none;
+    color: wheat;
+    cursor: pointer;
+}
+
+/*-------Delete Tin Nhắn*/
+.body-item-chat .htchat #contentMsg li .Delete {
+    position: relative;
+    z-index: 999;
+    padding-right: 5px;
+    background: none;
+    height: 0px;
+    display: none;
+}
+
+.body-item-chat .htchat #contentMsg li:hover .Delete {
+    display: block;
+}
+
+.body-item-chat .htchat #contentMsg li button {
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+    .body-item-chat .htchat #contentMsg li button img {
+        width: 20px;
+        background-color: black;
+        border-radius: 50px;
+    }
+
+/*------Hiển thị hình ảnh----------*/
+.body-send-chat .fileInputWrapper {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    z-index: 999;
+    margin-left: -112px;
+    margin-top: 65px;
+    border: 1px solid black;
+    padding: 0px 10px 0px 10px;
+    height: 36px;
+}
+
+.body-send-chat .fileInputIcon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.body-send-chat input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    cursor: pointer;
+}

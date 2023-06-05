@@ -1,0 +1,149 @@
+﻿
+.home {
+    height: 180vh;
+}
+
+.home_body .info {
+    height: 505px;
+}
+
+    .home_body .info .background {
+        margin-top: 0px;
+    }
+
+.background .hoadon {
+    padding: 30px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    height: 500px;
+}
+
+.background .name {
+    text-align: center;
+}
+
+.background .name {
+    color: wheat;
+    font-size: 30px;
+}
+
+.background .hoadon_ngay {
+    display: flex;
+}
+
+    .background .hoadon_ngay .ngay {
+        margin-left: 40px;
+        width: 360px;
+    }
+
+    .background .hoadon_ngay .mahoadon {
+        margin-left: 290px;
+        width: 180px;
+    }
+
+.background .hoadon .hoadon--ct {
+    display: flex;
+    padding-top: 30px;
+}
+
+    .background .hoadon .hoadon--ct p {
+        padding-bottom: 15px;
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .background .hoadon .hoadon--ct .hoadon1 {
+        margin-left: 100px;
+        width: 330px;
+        border-right: 2px solid;
+    }
+
+    .background .hoadon .hoadon--ct .hoadon2 {
+        margin-left: 160px;
+    }
+
+.body {
+    background: url('../../img/travel.jpg');
+    background-size: cover;
+    height: auto;
+}
+
+    .body .tieude {
+        height: 50px;
+        background: #30336b;
+        text-align: center;
+    }
+
+        .body .tieude h1 {
+            color: antiquewhite;
+            font-size: 30px;
+            padding-top: 10px;
+            font-family: math;
+        }
+
+    .body .list--ks {
+        border: 1px solid;
+        width: 100%;
+        height: 100%;
+        padding: 30px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+        .body .list--ks .khachsan {
+            width: 400px;
+            border: 1px solid;
+            text-align: center;
+            background: rgba(29, 21, 21, 0.8);
+            height: 360px;
+            margin-right: 29px;
+            margin-bottom: 30px;
+        }
+
+            .body .list--ks .khachsan .anh img {
+                width: 300px;
+                height: 200px;
+            }
+
+            .body .list--ks .khachsan .mota .name {
+                font-size: 30px;
+                font-weight: 600;
+            }
+
+            .body .list--ks .khachsan .datmua a {
+                text-decoration: none;
+                color: white;
+                border: 2px solid;
+                background: black;
+                padding: 6px;
+                width: 205px;
+            }
+
+                .body .list--ks .khachsan .datmua a:hover {
+                    background: #c7ecee;
+                    color: black;
+                }
+
+.home_body .Error {
+    width: 955px;
+    height: 110px;
+    border: 2px solid black;
+    margin-top: 140px;
+    margin-left: 13px;
+    background: rgba(0,0,0,0.5);
+}
+
+    .home_body .Error h2 {
+        color: aliceblue;
+        font-size: 20px;
+        margin-left: 20px;
+    }
+
+#map {
+    border: 2px solid white;
+    width: 100%;
+    height: 500px;
+    position: relative;
+     z-index: 999; 
+    margin-top: 15px;
+}

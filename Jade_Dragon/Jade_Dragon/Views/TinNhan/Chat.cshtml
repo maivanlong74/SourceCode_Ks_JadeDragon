@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Jade_Dragon.Models.NguoiDung>
+@{
+    ViewBag.Title = "Chat";
+    Layout = "~/Views/Shared/TongHop.cshtml";
+}
+<link href="~/Style/css/layout/ChatClient.css" rel="stylesheet" />
+
+<div class="home">
+    <div class="home__background"></div>
+    <div class="grid wide">
+        <div class="row">
+            <div class="home__container__slider">
+                <div class="item-chat">
+                    <div class="body-chat">
+                        <div class="body-item-chat">
+                            <div class="list-chat">
+                                <div class="chat-admin">
+                                    <button type="submit" class="btnUser" data-id="@Session["MaPhongAdmin"]">
+                                        Chat với Admin
+                                    </button>
+                                </div>
+                                <div class="list-ks-item">
+                                    <span>Nhân viên khách sạn</span>
+                                    <ul class="list-ks">
+                                        @foreach (var j in Model)
+                                        {
+                                            <li class="ks-item">
+                                                <button type="submit" class="btnUser" data-id="@j.MaNguoiDung" title="Khách sạn @j.KhachSan.TenKhachSan">
+                                                    @j.HoTen
+                                                </button>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                                <div class="list-user-item">
+                                    <span>Phòng chat</span>
+                                    <ul class="list-user" id="Create_Room"></ul>
+                                </div>
+
+                            </div>
+                            <div class="htchat">
+                                <div>
+                                    <i id="tenphong">@Session["TenPhong"]</i>
+                                    <input type="hidden" id="idphong" value="@Session["MaPhong"]" />
+                                    <input type="hidden" id="idUser" value="" />
+                                </div>
+                                <ul id="contentMsg"></ul>
+                            </div>
+                        </div>
+                        <div class="body-send-chat">
+                            <input type="hidden" id="makh" value="@Session["MaNguoiDung"]" />
+
+                            <input type="text" id="txtMessage" placeholder="Nhập chat" class="txtchat" />
+                            <label for="fileInput" class="fileInputWrapper">
+                                <img src="~/Style/img/icon/Icon_Img.jpg" alt="Upload Image" class="fileInputIcon">
+                                <input id="fileInput" type="file" accept="image/*">
+                            </label>
+                            <button type="submit" id="btnSend" class="txtchat">
+                                <img src="~/Style/img/icon/Icon-Send2.png" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@Page.Title</title>
+    <link rel="shortcut icon" href="~/Style/img/avt/logo.jpg">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link href="~/Style/css/login_logout/reset.css" rel="stylesheet" />
+    <link href="~/Style/css/login_logout/app.css" rel="stylesheet" />
+    @RenderSection("head", required: false)
+</head>
+<body>
+    @RenderBody()
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="~/Style/js/app.js"></script>
+
+    @if (TempData["WebMsgBox"] != null && (bool)TempData["WebMsgBox"] == true)
+    {
+        <script type="text/javascript">
+        alert('@Html.Raw(TempData["Message"])');
+        </script>
+    }
+</body>
+</html>

@@ -1,0 +1,100 @@
+﻿
+.home__container__slider .User--avt {
+    background: url(/Style/img/travel.jpg);
+    background-size: cover;
+    width: 1085px;
+    height: 420px;
+    border-radius: 50px;
+    margin-top: 50px;
+}
+
+.home__container__slider .User--avt .User--avt-a {
+    background: rgba(0,0,0, 0.7);
+    height: 420px;
+    border-radius: 50px;
+}
+
+.home__container__slider .User--avt .User--avt-a .Content--user {
+    margin-left: 400px;
+}
+
+button {
+    margin-left: 220px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: 10px;
+    display: block;
+    color: black;
+}
+
+    button:hover {
+        background: black;
+        color: wheat;
+        font-weight: 700;
+    }
+
+.home__container__slider .User--avt .User--avt-a .Content--user .name {
+    font-size: 40px;
+    margin-top: 40px;
+}
+
+.home__container__slider .User--avt .User--avt-a .Content--user .List-Content {
+    margin-left: 35px;
+    padding-bottom: 15px;
+    margin-top: 5px;
+}
+
+.home__container__slider .User--avt .User--avt-a .Content--user .the {
+    margin-left: 330px;
+}
+
+.home__container__slider .User--avt .User--avt-a .Content--user input {
+    background: none;
+    border: none;
+    color: white;
+    margin-left: 20px;
+}
+
+.home__container__slider .User--avt .User--avt-a .Content--user .Account {
+    display: flex;
+}
+
+.home__container__slider .User--avt .User--avt-a .Content--user .Account .matkhau{
+    text-align: center;
+}
+
+.home__container__slider .User--avt .User--avt-a .Content--user .Account .matkhau a {
+    text-decoration: none;
+}
+
+.home__container__slider .User--avt .User--avt-a .Content--user .Account .matkhau a:hover {
+    text-decoration: none;
+    font-weight: 700;
+    color: yellow;
+}
+
+.home__container__slider .Anh_avt {
+    margin-top: -360px;
+    margin-left: 70px;
+    width: 300px;
+    height: 300px;
+}
+
+    .home__container__slider .Anh_avt img {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        border: 3px solid white;
+    }
+
+    .home__container__slider .Anh_avt .tai-img input {
+        width: 72px;
+        margin-top: -130px;
+        margin-left: 112px;
+        border-radius: 10px;
+        display: none;
+    }
+
+    .home__container__slider .Anh_avt:hover .tai-img input {
+        display: block;
+    }

@@ -1,0 +1,104 @@
+﻿
+body {
+    background-image: url('/Style/img/nen.jpg');
+    background-size: cover;
+}
+
+.home {
+    height: auto;
+    background: none;
+}
+
+.home .body {
+    background: none;
+    height: auto;
+    max-height: 100vh;
+    margin-left: 10px;
+    border: 3px solid white;
+    overflow: auto;
+    margin-top: 20px;
+}
+.no-hd {
+    text-align: center;
+    color: wheat;
+    font-weight: 800;
+    background: rgba(0,0,0,0.7);
+}
+table {
+    background: rgba(0,0,0,0.5);
+    border-collapse: collapse;
+    width: 99%;
+    margin-left: 10px;
+}
+
+th {
+    background: black;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+    border: 1px solid white;
+}
+
+td {
+    padding: 10px;
+    color: wheat;
+}
+
+.mhd {
+    cursor: pointer;
+}
+
+    .mhd:hover {
+        color: yellow;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+.confirm-button {
+    text-decoration: none;
+    color: wheat;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.delete-button img {
+    vertical-align: middle;
+}
+
+#popup {
+    position: absolute;
+    display: none;
+    padding: 10px;
+    z-index: 9999;
+}
+
+body::-webkit-scrollbar {
+    width: 20px;
+    transition: width 0.5s ease-in-out;
+}
+
+body::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #2c3e50;
+    height: 30px;
+}
+
+body::-webkit-scrollbar-track {
+    background-color: #95a5a6;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.popup-content .close-btn {
+    font-size: 15px;
+    background: black;
+    color: wheat;
+    padding: 0 5px 0 5px;
+    cursor: pointer;
+}
+
+    .popup-content .close-btn:hover {
+        color: yellow;
+        border: 1px solid yellow;
+    }

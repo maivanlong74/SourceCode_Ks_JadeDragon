@@ -1,0 +1,370 @@
+﻿@model Jade_Dragon.Models.hienthiphong
+
+@{
+    ViewBag.Title = "khachsan";
+    Layout = "~/Views/Shared/TongHop.cshtml";
+}
+
+<head>
+    <link href="~/Style/css/layout/Search.css" rel="stylesheet" />
+    <link href="~/Style/css/html/a_khach_san.css" rel="stylesheet" />
+    <link href="~/Style/css/layout/phan_trang.css" rel="stylesheet" />
+</head>
+
+<div class="home">
+    <div class="home__background">
+        <div class="grid wide">
+            <div class="row">
+                <div class="home__container__slider">
+
+                    <div class="search">
+                        <div class="grid wide">
+                            <div class="search__container">
+                                <div class="row">
+
+                                    <!-- ------------------ -->
+                                    <h1>
+                                        Jade Dragon sẽ mang đến cho bạn một trải nghiệm tuyệt vời
+                                    </h1>
+                                    <!-- Tìm kiếm -->
+                                    <div class="timkiem">
+                                        <form method="get" action="@Url.Action("khachsan", "khachsan")" class="header-search hide-on-mb">
+                                            <div class="header-search__input-wrap">
+                                                <input type="text" class="header-search__input" placeholder="Search..." name="searchTerm">
+                                            </div>
+
+                                            <div class="Search Search-phong">
+                                                <select name="searchType" class="select-list">
+                                                    <option value="all">Tất cả</option>
+                                                    <option value="khachsan">Tên khách sạn</option>
+                                                    <option value="name">Tên phòng</option>
+                                                    <option value="gia">Giá</option>
+                                                </select>
+                                            </div>
+                                            <div class="header-search__btn">
+                                                <button type="submit">
+                                                    <i class="header-search__btn-icon fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <!-- DateTime -->
+                                    <form action="@Url.Action("khachsan", "khachsan")" method="post" class="DateTime">
+                                        <div class="search-time">
+                                            @if (Session["batdau"] == null)
+                                            {
+                                                <input type="datetime-local" name="batdau" required
+                                                       min="@ViewBag.time_now" max="@ViewBag.time_max" /> <br />
+                                                <input type="hidden" name="ma" value="@ViewBag.ma" />
+                                            }
+                                            else
+                                            {
+                                                if (Session["DongTime"] != null)
+                                                {
+                                                    <input placeholder="@Session["batdau"]" type="text" onfocus="(this.type='datetime-local')"
+                                                           onblur="(this.type='text')" name="batdau" required value="@Session["batdau"]"
+                                                           min="@ViewBag.time_now" max="@ViewBag.time_max" /> <br />
+                                                    <input type="hidden" name="ma" value="@ViewBag.ma" />
+                                                }
+                                                else
+                                                {
+                                                    <input placeholder="@Session["batdau"]" name="batdau"
+                                                           required value="@Session["batdau"]" readonly /> <br />
+                                                    <input type="hidden" name="ma" value="@ViewBag.ma" />
+                                                }
+                                                <input type="hidden" value="@Session["DongTime"]" />
+
+                                            }
+                                            <label>Ngày đến</label>
+                                        </div>
+                                        <div class="search-time">
+                                            @if (Session["ketthuc"] == null)
+                                            {
+                                                <input type="datetime-local" name="ketthuc" required
+                                                       min="@ViewBag.time_now" max="@ViewBag.time_max" /> <br />
+                                                <input type="hidden" name="ma" value="@ViewBag.ma" />
+                                            }
+                                            else
+                                            {
+                                                if (Session["DongTime"] != null)
+                                                {
+                                                    <input placeholder="@Session["ketthuc"]" type="text" onfocus="(this.type='datetime-local')"
+                                                           onblur="(this.type='text')" name="ketthuc" required value="@Session["ketthuc"]"
+                                                           min="@ViewBag.time_now" max="@ViewBag.time_max" /><br />
+                                                    <input type="hidden" name="ma" value="@ViewBag.ma" />
+                                                }
+                                                else
+                                                {
+                                                    <input placeholder="@Session["ketthuc"]" name="ketthuc"
+                                                           required value="@Session["ketthuc"]" readonly /> <br />
+                                                    <input type="hidden" name="ma" value="@ViewBag.ma" />
+                                                }
+                                            }
+                                            <label>Ngày trả</label>
+                                        </div>
+                                        @if (Session["DongTime"] != null)
+                                        {
+                                            <div class="search-time">
+                                                <button type="submit">Cập nhật</button> <br />
+                                                <a href="@Url.Action("QuayVe", "khachsan", new {ma = ViewBag.ma})" class="button">Quay về ngày hôm nay</a>
+                                            </div>
+                                        }
+                                    </form>
+                                </div>
+                                <!--------------------->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="Content" id="danhmucsp">
+                        <div class="menu">
+                            <div class="menu-top">
+                                @if (Session["SESSION_GROUP"] != null)
+                                {
+                                    <div class="menu-top-a">
+                                        <div class="avt-img">
+                                            <img src="~/UpLoad_Img/KhachHang/@Session["Avt"]" />
+                                        </div>
+                                        <i>@Session["HoTen"]</i>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="menu-top-a">
+                                        <div class="avt-img">
+                                            <img src="~/Style/img/avt/logo.jpg" />
+                                        </div>
+                                        <i style=" font-size: 20px; display: block; padding-top: 6px;">
+                                            <a href="@Url.Action("Login", "Account", new { area = "Admin" })">Đăng nhập</a>
+                                            <a>/</a>
+                                            <a href="@Url.Action("SignUpp", "Account", new { area = "Admin" })">Đăng ký tài khoản</a>
+                                        </i>
+                                    </div>
+                                }
+                            </div>
+                            <div class="list-menu">
+                                <ul>
+
+                                    <li class="top-menu">
+                                        <a class="menu-item item--a" href="@Url.Action("DatPhong", "GioHang", new {maks= Session["MaKhachSanPhong"], sodem= Session["sodem"]})"
+                                           style="border-right: 2px solid;">
+                                            <img src="/Style/img/icon/icon-Cart.jpg" title="Giỏ Hàng" />
+                                            @if (Session["TongSoLuong"] == null)
+                                            {
+
+
+                                                <i style="color: white;">(0)</i>
+                                            }
+                                            else
+                                            {
+                                                <i style="color: white;">(@Session["TongSoLuong"])</i>
+                                            }
+
+                                        </a>
+                                        <a class="menu-item item--b" href="/GioHang/LichSu?makh=@Session["MaNguoiDung"]">
+                                            <img src="/Style/img/icon/icon-ls.jpg" title="Lịch sử" />
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="@Url.Action("khachsan", "khachsan", new {batdau = Session["batdau"], ketthuc = Session["ketthuc"]})" class="all">Tất cả</a>
+                                    </li>
+                                    <li>
+                                        <span>Khách sạn</span>
+                                        <i class="header-search__select-icon fas fa-angle-down"></i>
+                                        <ul class="list list-ks">
+                                            @foreach (var item in Model.ks)
+                                            {
+                                                <li>
+                                                    <a href="@Url.Action("khachsan", "khachsan", new {ma= item.MaKhachSan, batdau = Session["batdau"], ketthuc = Session["ketthuc"]})">
+                                                        @item.TenKhachSan
+                                                    </a>
+                                                </li>
+
+                                            }
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span>Loại hình</span>
+                                        <i class="header-search__select-icon fas fa-angle-down"></i>
+                                        <ul class="list">
+                                            @foreach (var loai in Model.ctphong.Select(p => p.LoaiHinh).Distinct())
+                                            {
+                                                <li>
+                                                    <a href="@Url.Action("khachsan", "khachsan", new { loai = loai, batdau = Session["batdau"], ketthuc = Session["ketthuc"] })">
+                                                        @loai
+                                                    </a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span>Giá</span>
+                                        <i class="header-search__select-icon fas fa-angle-down"></i>
+                                        <ul class="list">
+                                            @foreach (var gia in Model.ctphong.Select(p => p.Gia).Distinct())
+                                            {
+                                                <li>
+                                                    <a href="@Url.Action("khachsan", "khachsan", new { gia = gia, batdau = Session["batdau"], ketthuc = Session["ketthuc"] })">
+                                                        @gia
+                                                    </a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span>VIP</span>
+                                        <i class="header-search__select-icon fas fa-angle-down"></i>
+                                        <ul class="list">
+                                            <li><a href="@Url.Action("khachsan", "khachsan", new {vip = "True", batdau = Session["batdau"], ketthuc = Session["ketthuc"]})">VIP</a></li>
+                                            <li><a href="@Url.Action("khachsan", "khachsan", new {vip = "False", batdau = Session["batdau"], ketthuc = Session["ketthuc"]})">Thường</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span>Trạng thái</span>
+                                        <i class="header-search__select-icon fas fa-angle-down"></i>
+                                        <ul class="list">
+                                            <li><a href="@Url.Action("khachsan", "khachsan", new {trangthai = "True", batdau = Session["batdau"], ketthuc = Session["ketthuc"]})">Còn trống</a></li>
+                                            <li><a href="@Url.Action("khachsan", "khachsan", new {trangthai = "False", batdau = Session["batdau"], ketthuc = Session["ketthuc"]})">Đã có khách</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <div class="tour" style="margin-top: 0px;">
+                            <div class="grid wide" style="margin-top: -80px;">
+                                <div class="tour__container">
+                                    <div class="tour__container__items">
+
+                                        <div class="pagination">
+                                            <ul id="page-numbers">
+                                                @if (ViewBag.TotalPages > 0)
+                                                {
+                                                    <li class="mucluc">Mục lục:</li>
+                                                    for (int i = 1; i <= ViewBag.TotalPages; i++)
+                                                    {
+
+                                                        <li class="@((ViewBag.PageNumber == i) ? "active" : "")"
+                                                            style="height: 30px;">
+                                                            <a href="@Url.Action("khachsan", new { page = i, ma = Session["KhachSan"],
+                                                                loai = Session["LoaiPhong"], gia = Session["GiaTien"], vip = Session["Menu_VIP"],
+                                                                trangthai = Session["TrangThaiPhong"], batdau = Session["batdau"], ketthuc = Session["ketthuc"]})">@i</a>
+                                                            </li>
+                                                        }
+                                                    }
+                                            </ul>
+                                        </div>
+
+                                        <div class="row" id="listPhong">
+                                            @if (Model.ph.Count() > 0)
+                                            {
+                                                foreach (var item in Model.ph)
+                                                {
+                                                    <div class="col l-4 m-12 c-12">
+                                                        <div class="tour__container__item">
+                                                            <div class="item__overlay"></div>
+
+                                                            @if (item.TrangThai == true)
+                                                            {
+                                                                <div class="item__background"></div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="item__background" style="background-image: url('/style/img/icon/x.jpg');"></div>
+                                                            }
+
+                                                            <div class="item__content">
+                                                                <span class="item_date">Khách sạn @item.KhachSan.TenKhachSan</span>
+                                                                <div class="item_center">
+                                                                    @if (item.VIP == true)
+                                                                    {
+                                                                        <h1>@item.TenPhong - VIP</h1>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <h1>@item.TenPhong</h1>
+                                                                    }
+                                                                    <div class="item_price">From @item.Gia VND</div>
+                                                                    <div class="item_rating">
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                    </div>
+                                                                    @if (item.KhoaPhong == true)
+                                                                    {
+                                                                        <i>Phòng đang bảo trì</i>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        if (item.TrangThai == true)
+                                                                        {
+                                                                            <i>Còn phòng</i>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <i>Đã có khách</i>
+                                                                        }
+                                                                    }
+                                                                    <div class="tour__item--btn">
+                                                                        <div class="tour__btn__bgc"></div>
+                                                                        @if (item.TrangThai == true)
+                                                                        {
+                                                                            <a href="@Url.Action("AddItem", "GioHang", new {maph = item.MaPhong, soluong = 1,
+                                                                                    ngayden = Session["ngayden"], ngaydi = Session["ngaydi"],
+                                                                                    batdau = Session["batdau"], ketthuc = Session["ketthuc"]})">
+                                                                                Đặt phòng
+                                                                                <span></span>
+                                                                                <span></span>
+                                                                                <span></span>
+                                                                            </a>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <a class="full" title="Phòng này đã có người khác đặt">
+                                                                                Đặt phòng
+                                                                                <span></span>
+                                                                                <span></span>
+                                                                                <span></span>
+                                                                            </a>
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <i style="width: 100%; text-align: center; margin-top: 80px; color: black;
+                                                        font-weight: 900; font-size: 40px;">
+                                                    @ViewBag.ksks hiện chưa có phòng
+                                                </i>
+                                            }
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('load', function () {
+        var danhmucsp = document.getElementById('danhmucsp');
+        danhmucsp.scrollIntoView({ behavior: 'smooth' });
+    });
+</script>
+<script src="~/Style/js/main2.js"></script>

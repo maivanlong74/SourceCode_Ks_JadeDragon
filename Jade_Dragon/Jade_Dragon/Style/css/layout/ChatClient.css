@@ -1,0 +1,342 @@
+﻿
+.item-chat {
+    height: 78vh;
+    width: 206vh;
+    background: rgba(0,0,0,0.4);
+}
+
+.body-chat {
+    background-color: wheat;
+    width: 130vh;
+    height: 77vh;
+    margin-left: 18%;
+    border: 5px solid black;
+}
+
+.body-item-chat {
+    height: 68vh;
+    display: flex;
+}
+
+    .body-item-chat .list-chat {
+        background: black;
+        width: 30%;
+    }
+
+    .body-item-chat .htchat {
+        background: white;
+        height: 68vh;
+        border: 1px solid black;
+        width: 70%;
+    }
+
+        .body-item-chat .htchat div {
+            background-color: black;
+            height: 50px;
+        }
+
+            .body-item-chat .htchat div i {
+                font-weight: 800;
+                color: wheat;
+                display: block;
+                width: 100%;
+                text-align: center;
+                height: 40px;
+                padding-top: 10px;
+            }
+
+        .body-item-chat .htchat ul {
+            list-style: none;
+            width: 100%;
+            height: 89%;
+            word-wrap: break-word;
+            overflow: auto;
+        }
+
+            .body-item-chat .htchat ul::-webkit-scrollbar {
+                width: 20px;
+            }
+
+            .body-item-chat .htchat ul::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                background-color: #2c3e50;
+                height: 20px;
+            }
+
+            .body-item-chat .htchat ul::-webkit-scrollbar-track {
+                background-color: #95a5a6;
+                border: 2px solid black;
+                border-radius: 10px;
+            }
+
+    .body-item-chat .list-chat .chat-admin {
+        border: 1px solid;
+        height: 50px;
+        text-align: center;
+    }
+
+        .body-item-chat .list-chat .chat-admin:hover {
+            background: #2c3e50;
+            cursor: pointer;
+        }
+
+        .body-item-chat .list-chat .chat-admin p {
+            height: 100%;
+            padding-top: 8%;
+        }
+
+        .body-item-chat .list-chat .chat-admin:hover p {
+            font-weight: 800;
+        }
+/*----------------------------*/
+.list-chat .list-ks-item {
+    height: 30vh;
+    border: 2px solid #f1c40f;
+}
+
+.list-chat .list-user-item {
+    height: 38vh;
+    border: 2px solid #2980b9;
+}
+.list-chat span {
+    margin-left: 20px;
+    display: block;
+    color: aliceblue;
+    font-size: 20px;
+    padding-top: 3px;
+}
+    /*-------List Khách sạn---*/
+    .list-chat .list-ks {
+        list-style: none;
+        height: 88%;
+        overflow: auto;
+    }
+
+    .list-chat .list-ks .ks-item {
+        color: white;
+    }
+
+    .body-item-chat .list-chat {
+        height: 76vh;
+    }
+
+    .list-chat .list-ks li button {
+        width: 100%;
+        background: none;
+    }
+
+    .list-chat .list-ks li:hover {
+        cursor: pointer;
+        padding-left: 5px;
+        background: #130f40;
+    }
+    /*-------List Phòng-------*/
+    .list-chat .list-user {
+        list-style: none;
+        height: 88%;
+        overflow: auto;
+    }
+
+    .list-chat .list-user li {
+        color: white;
+    }
+
+    .list-chat .list-user li:hover {
+        cursor: pointer;
+        padding-left: 5px;
+        background: #130f40;
+    }
+
+        .list-chat .list-user::-webkit-scrollbar {
+            width: 20px;
+        }
+
+        .list-chat .list-user::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-color: #2c3e50;
+            height: 20px;
+        }
+
+        .list-chat .list-user::-webkit-scrollbar-track {
+            background-color: #95a5a6;
+            border: 2px solid black;
+            border-radius: 10px;
+        }
+/*-------------------------------*/
+
+.body-item-chat .list-chat ul li {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.list-chat .list-user li button {
+    width: 100%;
+    background: none;
+}
+
+.body-send-chat {
+    display: flex;
+    background: black;
+    height: 50px;
+}
+
+    .body-send-chat input, button {
+        height: 35px;
+    }
+
+        .body-send-chat input.txtchat {
+            margin-left: 300px;
+            margin-top: 10px;
+            width: 72vh;
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            padding-left: 15px;
+            color: black;
+            border: 1px solid wheat;
+        }
+
+            .body-send-chat input.txtchat::placeholder {
+                color: black;
+            }
+
+    .body-send-chat button.txtchat {
+        margin-left: 0px;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        border: 1px solid wheat;
+        margin-top: 10px;
+        width: 70px;
+    }
+
+    .body-send-chat button.txtchat:hover {
+        background: #95afc0;
+    }
+
+    .body-send-chat button.txtchat img {
+        height: 100%;
+    }
+/*-----------Hiển thị tin nhắn--------------------*/
+    .body-item-chat .htchat #contentMsg .timenow {
+        text-align: center;
+    }
+
+    .body-item-chat .htchat #contentMsg li {
+        color: black;
+        margin-top: 5px;
+        width: auto;
+        word-wrap: break-word;
+    }
+
+    .body-item-chat .htchat #contentMsg li p {
+        margin-bottom: 0;
+        font-weight: 800;
+    }
+
+    .body-item-chat .htchat #contentMsg li span {
+        display: inline-block;
+        width: auto;
+        max-width: 300px;
+        white-space: break-spaces;
+        padding: 10px;
+        border-radius: 15px;
+    }
+
+    .body-item-chat .htchat #contentMsg .you {
+        text-align: left;
+    }
+
+    .body-item-chat .htchat #contentMsg .me {
+        text-align: right;
+    }
+
+    .body-item-chat .htchat #contentMsg .you p {
+        margin-left: 15px;
+    }
+
+    .body-item-chat .htchat #contentMsg .you span {
+        margin-left: 15px;
+        color: black;
+        border: 1px solid black;
+    }
+
+    .body-item-chat .htchat #contentMsg .me span {
+        margin-right: 15px;
+        background-color: blueviolet;
+        color: wheat;
+        border: 1px solid white;
+    }
+
+/*------------------*/
+.chat-admin button {
+    height: 100%;
+    width: 100%;
+    background: none;
+}
+
+.chat-admin button:hover {
+    font-weight: 800;
+    color: white;
+}
+
+/*-------Xóa Tin Nhắn Chat--------------*/
+.body-item-chat .htchat #contentMsg li .Delete {
+    position: relative;
+    z-index: 999;
+    padding-right: 5px;
+    background: none;
+    height: 0px;
+    display: none;
+}
+
+.body-item-chat .htchat #contentMsg li:hover .Delete {
+    display: block;
+}
+
+.body-item-chat .htchat #contentMsg li #deleteButton {
+    height: 42px;
+    background: none;
+    border: none;
+}
+
+.body-item-chat .htchat #contentMsg li #deleteButton img {
+    width: 20px;
+    background-color: black;
+    border-radius: 50px;
+}
+
+/*------Hiển thị hình ảnh----------*/
+.body-send-chat .fileInputWrapper {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    z-index: 999;
+    margin-left: -50px;
+    margin-top: 10px;
+    border: 1px solid black;
+    padding: 0px 10px 0px 10px;
+}
+
+.body-send-chat .fileInputIcon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.body-send-chat input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    cursor: pointer;
+}
+
+.body-item-chat .htchat #contentMsg li img {
+    max-width: 150px;
+    max-height: 150px;
+    padding: 5px;
+    border: 1px solid black;
+    margin: 5px;
+}

@@ -1,0 +1,253 @@
+
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.body{
+    display: flex;
+    height: 100vh;
+}
+
+.slider-item{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+.slider-item::before{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.slider-item-one{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* ----info------- */
+
+.slider-item-one .info{
+    padding: 160px;
+    font-size: 20px;
+    position: relative;
+}
+
+.slider-item-one .info .noidung {
+    display: flex;
+    margin-top: 70px;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.slider-item-one:hover .info .noidung {
+    opacity: 1;
+}
+
+.slider-item-one .info h1{
+    font-size: 60px;
+    color: white;
+}
+
+.slider-item-one .info .noidung .info-a {
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.8);
+    color: wheat;
+    width: 380px;
+}
+
+.slider-item-one .info .noidung .info-a .info-b{
+    margin-top: -20px;
+}
+
+.slider-item-one .info .noidung .info-a .info-b .one {
+    display: block;
+    padding-bottom: 15px;
+    width: 300px;
+    word-wrap: break-word;
+}
+
+.slider-item-one .info .noidung .datphong-item {
+    margin-left: 70px;
+    margin-top: 40px;
+}
+
+.slider-item-one .info .noidung .datphong {
+    background: #03020e;
+    border-radius: 50px;
+    display: block;
+    height: 80px;
+    width: 300px;
+    text-align: center;
+}
+
+.slider-item-one .info .noidung .datphong a {
+    display: block;
+    text-decoration: none;
+    font-size: 30px;
+    padding-top: 20px;
+}
+
+.slider-item-one .info .noidung .datphong:hover {
+    background: #192a56;
+}
+
+.slider-item-one .info .noidung .datphong:hover a {
+    font-weight: 600;
+    color: #fbc531;
+}
+
+/* ------Owl------ */
+
+.owl-carousel {
+    width: 80% !important;
+}
+
+.owl-prev{
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 50px !important;
+    color: #fff !important;
+}
+
+.owl-next{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 50px !important;
+    color: #fff !important;
+}
+
+.owl-prev, .owl-next:hover{
+    background: none !important;
+}
+
+.owl-dots{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+}
+
+.owl-dots span{
+    width: 15px !important;
+    height: 15px !important;
+    margin: 0 !important;
+    background-color: transparent !important;
+}
+
+.owl-dot {
+    border: 2px solid white !important;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.owl-dot.active span{
+    background-color: black !important;
+}
+
+/* -----map---------- */
+
+.map{
+    background: black;
+    width: 100%;
+    border: 2px solid white;
+}
+
+.map #XemMap {
+    font-size: 20px;
+    color: white;
+    width: 100%;
+    height: 10vh;
+    background: #2f3640;
+}
+
+.map #XemMap:hover {
+    color: yellow;
+    font-weight: 700;
+    background: none;
+}
+
+.centent{
+    border: 2px solid wheat;
+}
+
+.centent h1 {
+    font-size: 50px;
+    color: wheat;
+    padding: 30px;
+    padding-bottom: 10px;
+}
+
+.list-map{
+    height: 70vh;
+    overflow: auto;
+}
+
+    .list-map::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .list-map::-webkit-scrollbar-thumb {
+        background-image: linear-gradient(to bottom, #ffa400, #00aefd);
+        border-radius: 25px;
+    }
+
+    .list-map::-webkit-scrollbar-track {
+        background-color: white;
+    }
+
+.list-map ul{
+    height: 100%;
+}
+
+.list-map ul .top{
+    margin-top: 20px;
+}
+
+.list-map ul li{
+    padding-bottom: 20px;
+    list-style: none;
+    border: 1px solid white;
+    height: 50px;
+    background-color: #03020e;
+}
+
+.list-map ul li a {
+    color: white;
+    text-decoration: none;
+    margin-left: 30px;
+    display: block;
+    padding-top: 16px;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.list-map ul li:hover{
+    background: #2f3542;
+    transition: 0,8s;
+}
+
+.list-map ul li:hover a{
+    margin-left: 50px;
+    color: yellow;
+    transition: 1s;
+}

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="461dd4e8c04c40e9986b9c88d5cfd77f" Name="Diagram1">
+        <EntityTypeShape EntityType="SQL_JadeDragonModel.AnhKhachSan" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQL_JadeDragonModel.AnhPhongKhachSan" Width="1.5" PointX="5.25" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQL_JadeDragonModel.BinhLuan" Width="1.5" PointX="5.25" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQL_JadeDragonModel.ChiTietHoaDon" Width="1.5" PointX="13.5" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQL_JadeDragonModel.DanhGiaKhachSan" Width="1.5" PointX="8.25" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQL_JadeDragonModel.HoaDon" Width="1.5" PointX="8.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQL_JadeDragonModel.KhachSan" Width="1.5" PointX="3" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQL_JadeDragonModel.KhuVuc" Width="1.5" PointX="0.75" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQL_JadeDragonModel.NguoiDung" Width="1.5" PointX="8.25" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQL_JadeDragonModel.PhanQuyen" Width="1.5" PointX="6" PointY="24.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQL_JadeDragonModel.PhongChat" Width="1.5" PointX="5.25" PointY="38.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQL_JadeDragonModel.PhongKhachSan" Width="1.5" PointX="11.25" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQL_JadeDragonModel.SoNguoiTruyCap" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQL_JadeDragonModel.SoPhongKhachSan" Width="1.5" PointX="9" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQL_JadeDragonModel.SoTangKhachSan" Width="1.5" PointX="9" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQL_JadeDragonModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQL_JadeDragonModel.ThongKeDanhGia" Width="1.5" PointX="5.25" PointY="45.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQL_JadeDragonModel.TinNhanNguoiDung" Width="1.5" PointX="10.5" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQL_JadeDragonModel.TinNhanNhom" Width="1.5" PointX="10.5" PointY="29.875" IsExpanded="true" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_AnhKhachSan_KhachSan" ManuallyRouted="false" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_AnhPhongKhachSan_KhachSan" ManuallyRouted="false" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_AnhPhongKhachSan_PhongKhachSan" ManuallyRouted="false" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_BinhLuan_KhachSan" ManuallyRouted="false" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_BinhLuan_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_ChiTietHoaDon_HoaDon" ManuallyRouted="false" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_ChiTietHoaDon_PhongKhachSan" ManuallyRouted="false" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_DanhGiaKhachSan_KhachHang" ManuallyRouted="false" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_DanhGiaKhachSan_KhachHang1" ManuallyRouted="false" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_DanhGiaKhachSan_KhachSan" ManuallyRouted="false" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_HoaDon_KhachHang" ManuallyRouted="false" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_HoaDon_KhachSan" ManuallyRouted="false" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_KhachSan_KhuVuc" ManuallyRouted="false" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_NguoiDung_KhachSan" ManuallyRouted="false" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_PhongChat_KhachSan" ManuallyRouted="false" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_PhongKhachSan_KhachSan" ManuallyRouted="false" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_ThongKeDanhGia_KhachSan" ManuallyRouted="false" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_KhachHang_PhanQuyen" ManuallyRouted="false" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_TinNhanNguoiDung_KhachHang" ManuallyRouted="false" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_TinNhanNguoiDung_KhachHang1" ManuallyRouted="false" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_TinNhanNhom_KhachHang" ManuallyRouted="false" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_TinNhanNhom_PhongChat" ManuallyRouted="false" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_PhongKhachSan_SoPhongKhachSan" ManuallyRouted="false" />
+        <AssociationConnector Association="SQL_JadeDragonModel.FK_PhongKhachSan_SoTangKhachSan" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

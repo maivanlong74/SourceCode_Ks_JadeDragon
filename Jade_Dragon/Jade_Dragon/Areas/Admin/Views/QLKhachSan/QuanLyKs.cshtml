@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Jade_Dragon.Models.KhachSan>
+@{
+    ViewBag.Title = "QuanLyKs";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<script src="~/Areas/Admin/Public/js/dataTables_min.js"></script>
+<link href="~/Areas/Admin/Public/css/Table.css" rel="stylesheet" />
+<style>
+    table.dataTable thead th, table.dataTable thead td {
+        text-align: center;
+    }
+
+    table.dataTable tbody th, table.dataTable tbody td {
+        text-align: center;
+    }
+
+    table.dataTable tfoot th, table.dataTable tfoot td {
+        text-align: center;
+    }
+</style>
+<div class="home">
+    <div class="body">
+        <i class="htkhuvuc-i">
+            <a href="@Url.Action("khuvuc", "khuvuc")" class="htkhuvuc-a">
+                KHU VỰC
+            </a>
+        </i>
+        <table id="example" class="display">
+            <thead>
+                <tr>
+                    <th>Tên khách sạn</th>
+                    <th>Số điện thoại</th>
+                    <th>gmail</th>
+                    <th>Địa chỉ</th>
+                    <th>Thang điểm</th>
+                    <th>
+                        <a href="@Url.Action("Create", "QLKhachSan")">
+                            <img src="~/Style/img/icon/icon-them.jpg" style="width: 25px;" />
+                        </a>
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><a href="@Url.Action("Details", "QLKhachSan", new { id = item.MaKhachSan })" style="color: wheat; text-decoration: none;">@item.TenKhachSan</a></td>
+                        <td>@item.SoDienThoai</td>
+                        <td>@item.Gmail</td>
+                        <td>@item.DiaChi</td>
+                        <td>@item.ThangDiem</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "QLKhachSan", new { id = item.MaKhachSan })">
+                                <img src="~/Style/img/icon/icon-sua.jpg" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Delete", "QLKhachSan", new { id = item.MaKhachSan })">
+                                <img src="~/Style/img/icon/icon-xoa.jpg" />
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Tên khách sạn</th>
+                    <th>Số điện thoại</th>
+                    <th>gmail</th>
+                    <th>Địa chỉ</th>
+                    <th>Thang điểm</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+
+

@@ -1,0 +1,87 @@
+﻿@model Jade_Dragon.Models.NguoiDung
+@{
+    ViewBag.Title = "SignUpp";
+    Layout = "~/Areas/Admin/Views/Shared/login-logout.cshtml";
+}
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+<link href="~/Style/css/login_logout/SignUp.css" rel="stylesheet" />
+<div class="align">
+    <div class="card">
+        <div class="head">
+            <h1>Đăng ký</h1>
+        </div>
+        <div class="tabs">
+
+            @using (Html.BeginForm("_SignUp", "Account", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="inputs" style="display: flex; margin-left: 40px;">
+
+                    <div>
+                        <div class="input">
+                            @Html.EditorFor(model => model.Gmail, new { htmlAttributes = new { placeholder = "Nhập Gmail" } })
+                            @Html.ValidationMessageFor(model => model.Gmail, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="input">
+                            @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-input", placeholder = "Họ và tên" } })
+                            @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="input">
+                            @Html.EditorFor(model => model.SoDienThoai, new { htmlAttributes = new { @class = "form-input", placeholder = "Số điện thoại", maxlength = "11", minlength = "9" } })
+                            @Html.ValidationMessageFor(model => model.SoDienThoai, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="input">
+                            @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-input", placeholder = "Địa chỉ" } })
+                            @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div style="margin-left: 40px;">
+                        <div class="input">
+                            @Html.EditorFor(model => model.CMND, new { htmlAttributes = new { @class = "form-input", placeholder = "CMND/Căn Cước công dân" } })
+                            @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="input">
+                            @Html.EditorFor(model => model.TenDangNhap, new { htmlAttributes = new { @class = "form-input", placeholder = "Tên đăng nhập" } })
+                            @Html.ValidationMessageFor(model => model.TenDangNhap, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="input">
+                            <input id="Mk" name="MatKhau" required placeholder="Mật khẩu" type="password" />
+                            @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="input">
+                            <input type="password" name="NhapLai" value="" required placeholder="Nhập lại mật khẩu" />
+                            @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <i style="font-size: 15px; padding-bottom: 5px;">
+                    Bạn đã có tài khoản, hãy
+                    <a href="@Url.Action("Login", "Account", new { area = "Admin"})" style="text-decoration: none;">Đăng nhập</a>
+                </i>
+                <a href="~/trangchu/trangchu" style="text-decoration: none; color: yellow;">
+                    Quay về trang chủ
+                </a>
+                <button type="submit">Register</button>
+            }
+
+            <form action="~/Admin/Account/XacNhan" method="post">
+                @Html.AntiForgeryToken()
+                <div class="inputs">
+                    <div class="input" style="margin-left: 180px; margin-top: 83px;">
+                        @Html.EditorFor(model => model.Code, new { htmlAttributes = new { placeholder = "Nhập Mã Xác Nhận" } })
+                        @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                        <button type="submit">Gửi</button>
+                    </div>
+                    <input type="hidden" value="@Session["MaNguoiDung"]" name="MaKH" id="MaKH" />
+
+                </div>
+                <a id="User" href="#User">Quay lại</a>
+            </form>
+
+        </div>
+    </div>
+</div>
+<script src="~/Style/js/SignUp-min.js"></script>
+<script src="~/Style/js/SignUp.js"></script>

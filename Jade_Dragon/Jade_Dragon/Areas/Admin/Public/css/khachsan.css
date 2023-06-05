@@ -1,0 +1,17 @@
+﻿
+.body .danhsach .table form table tr td img {
+    width: 140px;
+    height: 90px;
+}
+
+.body .danhsach .table form table .them--a td .file {
+    width: 70px;
+}
+
+.body i .tieude {
+    margin-left: 50px;
+    display: block;
+    margin-top: 10px;
+    color: aliceblue;
+    font-weight: 900;
+}

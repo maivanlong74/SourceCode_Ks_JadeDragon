@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Jade_Dragon.Models.NguoiDung>
+@{
+    ViewBag.Title = "QuanLyKh";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<script src="~/Areas/Admin/Public/js/dataTables_min.js"></script>
+<link href="~/Areas/Admin/Public/css/Table.css" rel="stylesheet" />
+
+<div class="home">
+    <div class="body">
+        <table id="example" class="display">
+            <thead>
+                <tr>
+                    <th>Tên khách hàng</th>
+                    <th>Số điện thoại</th>
+                    <th>CMND</th>
+                    <th>Địa chỉ</th>
+                    <th>Xác Minh</th>
+                    <th>
+                        <a href="@Url.Action("Create", "QLKhachHang")">
+                            <img src="~/Style/img/icon/icon-them.jpg" style="width: 25px;" />
+                        </a>
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @if (item.MaKhachSan == null)
+                            {
+                                <a href="@Url.Action("Details","QLKhachHang", new { id = item.MaNguoiDung })" style="text-decoration: none; color: aqua;">
+                                    @item.HoTen
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Details","QLKhachHang", new { id = item.MaNguoiDung })" style="text-decoration: none; color: #d63031;" title="Chủ khách sạn @item.KhachSan.TenKhachSan">
+                                    @item.HoTen
+                                </a>
+                            }
+                        </td>
+                        <td>@item.SoDienThoai</td>
+                        <td>@item.CMND</td>
+                        <td>@item.DiaChi</td>
+                        @if (item.DaXacMinh == true)
+                        {
+                            <td style="font-weight: 700; color: #f1c40f;">Đã duyệt</td>
+                        }
+                        else if (item.DaXacMinh == false)
+                        {
+                            <td>Chưa duyệt</td>
+                        }
+                        <td>
+                            <a href="@Url.Action("Edit", "QLKhachHang", new { id = item.MaNguoiDung })">
+                                <img src="~/Style/img/icon/icon-sua.jpg" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Delete", "QLKhachHang", new { id = item.MaNguoiDung })">
+                                <img src="~/Style/img/icon/icon-xoa.jpg" />
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Tên khách hàng</th>
+                    <th>Số điện thoại</th>
+                    <th>CMND</th>
+                    <th>Địa chỉ</th>
+                    <th>Xác Minh</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>

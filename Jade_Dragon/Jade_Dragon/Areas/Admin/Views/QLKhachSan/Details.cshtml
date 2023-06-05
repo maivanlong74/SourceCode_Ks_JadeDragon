@@ -1,0 +1,90 @@
+﻿@model Jade_Dragon.Models.Ht_KhachSan
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="home">
+    <div class="body">
+        <div class="Content">
+            <h1 style=" color: aliceblue; padding-bottom: 90px; margin-left: -110px; margin-top: -40px;">
+                Thông tin khách sạn @Html.DisplayFor(model => model.ks.TenKhachSan)
+            </h1>
+            <form action="" method="post">
+
+                @if (Model.anhks.Count() == 0)
+                {
+                    <div class="Avt" style="margin-top: 0px;">
+                        <div class="khuvuc">
+                            <header class="UpFile">Chưa có ảnh !!!</header>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="Avt Zoom" style="margin-top: 0px;">
+                        <div class="List-anh">
+                            @foreach (var anh in Model.anhks)
+                            {
+                                <div class="anh-item"><img src="~/UpLoad_Img/KhachSan/@anh.LinkAnhKhachSan" /></div>
+                            }
+                        </div>
+                    </div>
+                }
+
+                <div class="Info" style="display: flex; margin-top: 75px;">
+
+                    <div>
+                        <div class="one">
+                            <label for="">Tên Khách sạn: </label>
+                            <span>@Html.DisplayFor(model => model.ks.TenKhachSan)</span>
+                        </div>
+                        <div class="one">
+                            <label for="">Số điện thoại: </label>
+                            <span>@Html.DisplayFor(model => model.ks.SoDienThoai)</span>
+                        </div>
+                        <div class="one">
+                            <label for="">Gmail: </label>
+                            <span>@Html.DisplayFor(model => model.ks.Gmail)</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-left: 50px;">
+                        <div class="one">
+                            <label for="">Địa chỉ: </label>
+                            <span>@Html.DisplayFor(model => model.ks.DiaChi)</span>
+                        </div>
+                        <div class="one">
+                            <label for="">Giá: </label>
+                            <span>@Html.DisplayFor(model => model.ks.Gia)</span>
+                        </div>
+                        <div class="one">
+                            <label for="">Khu vực: </label>
+                            <span>@Html.DisplayFor(model => model.ks.KhuVuc.TenKhuVuc)</span>
+
+                            <label style="margin-left: 20px;">Trạng thái: </label>
+                            @if (Model.ks.TrangThaiKs == true)
+                            {
+                                <span>Đang mở</span>
+                            }
+                            else
+                            {
+                                <span>Đang đóng</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="button" style=" display: flex; margin-left: 110px; margin-top: 0px;">
+                <a href="@Url.Action("Edit", "QLKhachSan", new { id = Model.ks.MaKhachSan })" class="out two"
+                   style=" margin-left: 130px; margin-left: 130px; margin-top: -10px; height: 35px;">
+                    Chỉnh sửa
+                </a>
+                <a href="@Url.Action("QuanLyKs", "QLKhachSan")" class="out two back" style="height: 35px; margin-top: -10px;">
+                    Quay về trang khách sạn
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

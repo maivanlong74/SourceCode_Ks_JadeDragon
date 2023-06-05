@@ -1,0 +1,34 @@
+﻿@model Jade_Dragon.Models.NguoiDung
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Areas/Admin/Views/Shared/login-logout.cshtml";
+}
+
+<div id="wrapper">
+    @using (Html.BeginForm("kiemtradangnhap", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "form-login" }))
+    {
+        @Html.AntiForgeryToken()
+        <h1 class="form-heading">Form đăng nhập</h1>
+        <div class="form-group">
+            <i class="far fa-user"></i>
+            <input type="text" class="form-input" placeholder="Tên đăng nhập" name="username" required value="@ViewBag.username">
+            @Html.ValidationMessageFor(m => m.TenDangNhap, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <i class="fas fa-key"></i>
+            <input type="password" class="form-input" placeholder="Mật khẩu" name="password" required value="@ViewBag.password">
+            <div id="eye">
+                <i class="far fa-eye"></i>
+            </div>
+            @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger" })
+        </div>
+        <a href="~/trangchu/trangchu" style="text-decoration:none;"><h3>Quay lại trang chủ</h3></a>
+        <i style="font-size: 15px;">
+            bạn chưa có tài khoản, hãy
+            <a href="@Url.Action("SignUpp", "Account", new {area = "Admin"})" style="text-decoration: none;">Đăng ký</a>
+        </i> <br />
+        <a href="@Url.Action("QuenPassword", "Account", new {area = "Admin"})" style="text-decoration: none; font-size: 15px;">Quên mật khẩu ?</a>
+        <input type="submit" value="Đăng nhập" class="form-submit">
+    }
+</div>

@@ -1,0 +1,76 @@
+﻿#map .Search-Search {
+    position: absolute;
+    z-index: 999;
+    margin-left: 110px;
+    margin-top: 30px;
+}
+
+    #map .Search-Search #search-input {
+        width: 230px;
+        height: 40px;
+        border-radius: 20px;
+        text-align: center;
+        background: rgba(0,0,0,0.5);
+        color: wheat;
+    }
+
+        #map .Search-Search #search-input::placeholder {
+            color: wheat;
+            font-weight: 700;
+        }
+
+    #map .Search-Search button {
+        background: rgba(0,0,0,0.5);
+        color: wheat;
+        height: 40px;
+        width: 100px;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+
+        #map .Search-Search button:hover {
+            background: #95a5a6;
+            font-weight: 700;
+        }
+/*-----------------------*/
+    .body #form-kv {
+        padding: 40px;
+        padding-bottom: 0;
+        margin-left: 15%;
+        padding-top: 0px;
+    }
+/*--------------top*/
+    #map .Search-Search #MuiTen_Top {
+        background-color: wheat;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+    }
+
+        #map .Search-Search #MuiTen_Top:hover {
+            background-color: yellow;
+        }
+
+        #map .Search-Search #MuiTen_Top img {
+            width: 30px;
+        }
+/*--------------bot*/
+
+    #map .Search-Search .xoa {
+        display: none;
+    }
+
+    #map .Search-Search #MuiTen_Bot {
+        background-color: wheat;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+    }
+
+    #map .Search-Search #MuiTen_Bot:hover {
+        background-color: yellow;
+    }
+
+    #map .Search-Search #MuiTen_Bot img {
+        width: 30px;
+    }

@@ -1,0 +1,89 @@
+﻿@model Jade_Dragon.Models.hoadon
+@{
+    ViewBag.Title = "HoaDon";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<style>
+    .Info .info-item {
+        display: flex;
+    }
+
+    .Info .info-item .info-ks {
+        margin-left: 50px;
+    }
+</style>
+
+<div class="home">
+    <div class="body">
+
+        <div class="Content" style="margin-left: 400px;">
+            <h1 style=" color: aliceblue; padding-bottom: 63px; margin-left: -110px; margin-top: -30px;">
+                Thông tin hóa đơn @Html.DisplayFor(model => model.MaHoaDon)
+            </h1>
+            <form action="" method="post">
+
+                <div class="Info">
+
+                    <div class="info-item">
+                        <div class="info-kh">
+                            <div class="one">
+                                <label for="">Tên Khách Hàng: </label> <span>@Html.DisplayFor(model => model.HoTen)</span>
+                            </div>
+                            <div class="one">
+                                <label for="">Số điện thoại: </label> <span>@Html.DisplayFor(model => model.SoDienThoai)</span>
+                            </div>
+                            <div class="one">
+                                <label>CMND: </label> <span>@Html.DisplayFor(model => model.CMND)</span>
+                            </div>
+                            <div class="one">
+                                <label>Gmail: </label> <span>@Html.DisplayFor(model => model.Gmail)</span>
+                            </div>
+                            <div class="one">
+                                <label for="">Mã hóa đơn: </label>
+                                <span>@Html.DisplayFor(model => model.MaHoaDon)</span>
+                            </div>
+                        </div>
+
+                        <div class="info-ks">
+                            <div class="one">
+                                <label for="">khách sạn: </label> <span>@Html.DisplayFor(model => model.khachsan.TenKhachSan)</span>
+                            </div>
+                            <div class="one">
+                                <label for="">Số lượng phòng: </label> <span>@Html.DisplayFor(model => model.SoLuongPhong)</span>
+                            </div>
+                            <div class="one">
+                                <label for="">Ngày đặt: </label>
+                                <span>@Html.DisplayFor(model => model.NgayDat)</span>
+                            </div>
+                            <div class="one">
+                                @if (Model.HinhThuc == "taiquay")
+                                {
+                                    <label>Tiền cọc: </label> <span>@Html.DisplayFor(model => model.DatCoc)</span>
+                                    <label>Tiền còn thiếu: </label> <span>@Html.DisplayFor(model => model.TongTien)</span>
+                                }
+                                else
+                                {
+                                    <label>Tổng tiền: </label> <span>@Html.DisplayFor(model => model.TongTien)</span>
+                                }
+
+                            </div>
+                            <div class="one">
+                                <label for="">Trạng thái</label>
+                                <span>@Model.ErrorPay.TenError</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="one">
+                        <a href="@Url.Action("ChiTiet", "LichSu", new {ma = Model.MaHoaDon})" class="chitiet"
+                           style="padding: 20px; border: 1px solid; border-radius: 25px;">
+                            Xem chi tiết đơn hàng
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

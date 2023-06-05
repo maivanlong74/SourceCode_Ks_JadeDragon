@@ -1,0 +1,133 @@
+﻿
+/*========= Đánh giá ===========*/
+.button-danhgia {
+    color: black;
+    font-size: 15px;
+    padding: 0px 15px 0px 15px;
+    margin-left: 30px;
+    margin-top: 7px;
+    height: 30px;
+    border-radius: 20px;
+}
+
+    .button-danhgia:hover {
+        background: #2d3436;
+        color: wheat;
+        font-weight: 800;
+    }
+
+.rating {
+    font-size: 30px;
+    display: flex;
+    position: relative;
+}
+
+.star {
+    font-size: 30px;
+    cursor: pointer;
+    color: #ccc;
+    transition: color .25s ease-out;
+    background: none;
+    border: none;
+}
+
+.rated {
+    color: orange;
+}
+
+.danhgia-sao:hover .star {
+    color: orange;
+}
+
+    .danhgia-sao:hover .star:hover ~ .star {
+        color: #ccc;
+    }
+
+    .danhgia-sao:hover .star:hover {
+        color: orange;
+    }
+
+/*========== Thống kê ==============*/
+
+.slider-item-one .info .noidung .datphong {
+    margin-top: -110px;
+}
+
+.slider-item-one .info .noidung .datphong-item .thongke-sao {
+    border: 2px solid yellow;
+    background: rgba(0,0,0,0.6);
+    width: 380px;
+    color: wheat;
+    height: 230px;
+    margin-top: 55px;
+    text-align: center;
+}
+
+.slider-item-one .info .noidung .datphong-item .thongke-sao .tongsao {
+    margin-top: 15px;
+    color: wheat;
+    font-weight: 800;
+}
+
+.slider-item-one .info .noidung .datphong-item .thongke-sao .starss {
+    width: 50vh;
+    margin-top: 15px;
+    margin-left: 22px;
+    border: 1px solid wheat;
+    padding-top: 10px;
+}
+
+.slider-item-one .info .noidung .datphong-item .thongke-sao .sosao {
+    display: flex;
+    margin-left: 10px;
+}
+
+.slider-item-one .info .noidung .datphong-item .thongke-sao .sosao span {
+    padding-right: 10px;
+    color: white;
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.slider-item-one .info .noidung .datphong-item .thongke-sao .thuoc-sao {
+    width: 70%;
+}
+
+.slider-item-one .info .noidung .datphong-item .thongke-sao .thuoc-sao .starr {
+    height: 20px;
+    margin-bottom: 10px;
+    border: 1px solid white;
+}
+
+.slider-item-one .info .noidung .datphong-item .thongke-sao .thuoc-sao .star-a {
+    background-color: blueviolet;
+}
+
+.slider-item-one .info .noidung .datphong-item .thongke-sao .thuoc-sao .star-b {
+    background-color: yellow;
+}
+
+.slider-item-one .info .noidung .datphong-item .thongke-sao .thuoc-sao .star-c {
+    background-color: burlywood;
+}
+
+.slider-item-one .info .noidung .datphong-item .thongke-sao .thuoc-sao .star-d {
+    background-color: cadetblue;
+}
+
+.slider-item-one .info .noidung .datphong-item .thongke-sao .thuoc-sao .star-e {
+    background-color: wheat;
+}
+
+.slider-item-one .info .noidung .datphong-item .thongke-sao .statistics {
+    display: flex;
+    align-items: center;
+}
+
+.slider-item-one .info .noidung .datphong-item .thongke-sao .rating-count {
+    margin-right: 10px;
+}
+
+.slider-item-one .info .noidung .datphong-item .thongke-sao .dem {
+    margin-left: 5px;
+}

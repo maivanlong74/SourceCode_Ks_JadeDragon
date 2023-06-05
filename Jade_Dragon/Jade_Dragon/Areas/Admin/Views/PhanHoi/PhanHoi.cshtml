@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Jade_Dragon.Models.BinhLuan>
+@{
+    ViewBag.Title = "PhanHoi";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+<script src="~/Areas/Admin/Public/js/dataTables_min.js"></script>
+<link href="~/Areas/Admin/Public/css/Table.css" rel="stylesheet" />
+<div class="home">
+    <div class="body">
+        <table id="example" class="display">
+            <thead>
+                <tr>
+                    <th style="text-align: center;">Ảnh</th>
+                    <th style="text-align: center;">Họ Tên Khách Hàng</th>
+                    <th style="text-align: center;">Khách sạn</th>
+                    <th style="text-align: center;">Nội Dung</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model == null)
+                {
+
+
+                    <h1>Không có bình luận</h1>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        if (item.MaNguoiDung != null)
+                        {
+                            <tr>
+                                <td style="text-align: center;">
+                                    <img src="~/UpLoad_Img/KhachHang/@item.NguoiDung.Avt" alt="" style="
+                                                                    width: 100px;
+                                                                    height: 100px;
+                                                                    border-radius: 50px;">
+                                </td>
+                                <td style="text-align: center;">
+                                    <a href="@Url.Action("Edit", "QLKhachHang", new { id = item.MaNguoiDung })" style="color:wheat;">
+                                        @item.NguoiDung.HoTen
+                                    </a>
+                                </td>
+                                <td style="text-align: center;">
+                                    <a href="@Url.Action("Edit", "QLKhachSan", new { id = item.MaKhachSan })" style="color:wheat;">
+                                        @item.KhachSan.TenKhachSan
+                                    </a>
+                                </td>
+                                <td>@item.NoiDung</td>
+                                <td style="text-align: center;">
+                                    <a href="@Url.Action("Delete", "PhanHoi", new {id = item.MaBinhLuan})">
+                                        <img src="~/Style/img/icon/icon-xoa.jpg" style="width:40px;" />
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td style="text-align: center;">
+                                    <img src="~/Style/img/icon/icon-user.jpg" alt="" style="
+                                                                    width: 100px;
+                                                                    height: 100px;
+                                                                    border-radius: 50px;
+                                                                    background-color: wheat;">
+                                </td>
+                                <td style="text-align: center;">
+                                    <a style="color:wheat;">Tài khoản đã xóa</a>
+                                </td>
+                                <td>@item.NoiDung</td>
+                                <td style="text-align: center;">
+                                    <a href="@Url.Action("Delete", "PhanHoi", new {id = item.MaBinhLuan})">
+                                        <img src="~/Style/img/icon/icon-xoa.jpg" style="width:40px;" />
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th style="text-align: center;">Ảnh</th>
+                    <th style="text-align: center;">Họ Tên Khách Hàng</th>
+                    <th style="text-align: center;">Khách sạn</th>
+                    <th style="text-align: center;">Nội Dung</th>
+                    <th style="text-align: center;"></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+

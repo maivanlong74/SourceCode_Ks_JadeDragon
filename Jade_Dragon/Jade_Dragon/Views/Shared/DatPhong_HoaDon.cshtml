@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<html>
+<head>
+    <title>@Page.Title</title>
+    @RenderSection("head", required: false)
+    <link href="~/Style/css/html/DatPhong.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="header">
+
+        <nav class="header__nav">
+            <div class="header__nav__container">
+                <div class="grid wide">
+                    <div class="row">
+                        <div class="l-3 m-6 c-8">
+                            <a href="#">
+                                <div class="header__nav__container--logo">
+                                    Jade dradon
+                                </div>
+                            </a>
+                        </div>
+                        <div class="l-6 hide-on-tablet_mobile">
+                            <ul class="header__nav__container--list">
+                                <li><a href="@Url.Action("trangchu", "trangchu")">Trang chủ</a></li>
+                                <li>
+                                    <a href="@Url.Action("TrangKhachSan", "TrangKhachSan", new {maks = Session["MaKhachSanPhong"],
+                                          batdau = Session["batdau"], ketthuc = Session["ketthuc"]})">
+                                        Khách sạn
+                                    </a>
+                                </li>
+                                <li><a href="@Url.Action("chat", "TinNhan", new {makh = Session["MaNguoiDung"]})">Nhắn tin</a></li>
+
+                            </ul>
+                        </div>
+
+                        <div class="l-3 m-6 c-4 top">
+                            <i class="fas fa-bars list-tablet-mobile" id="menu_open"></i>
+                            @if (Session["SESSION_GROUP"] != null)
+                            {
+                                List<string> privilegeLevels = (List<string>)Session["SESSION_GROUP"];
+
+                                if (privilegeLevels[0].CompareTo("Client") == 0)
+                                {
+                                    <div class="header__nav__container--search">
+                                        <div class="a">
+                                            <img src="~/UpLoad_Img/KhachHang/@Session["Avt"]" alt="" class="avt" title="@Session["HoTen"]">
+                                            <ul>
+                                                <li class="User--a">
+                                                    <a href="@Url.Action("TrangCaNhan", "User", new {id = Session["MaNguoiDung"] })">
+                                                        Trang cá nhân
+                                                    </a>
+                                                </li>
+                                                <li><a href="@Url.Action("SignUpp", "Account", new { area = "Admin" })">Đăng ký</a></li>
+                                                <li><a href="@Url.Action("QuenMatKhau", "User", new {id = Session["MaNguoiDung"] })">Quên mật khẩu</a></li>
+                                                <li>
+                                                    <a href="@Url.Action("SignOut", "Account", new { area = "Admin" })">
+                                                        Đăng xuất
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="header__nav__container--search">
+                                        <div class="a">
+                                            <a href="@Url.Action("Login", "Account", new { area = "Admin" })">
+                                                <img src="~/Style/img/icon/icon_Login.jpg" class="avt" title="Login" />
+                                            </a>
+                                            <a href="@Url.Action("SignUpp", "Account", new { area = "Admin" })">
+                                                <img src="~/Style/img/icon/icon_SignUp.jpg" class="avt" title="SignUp" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="header__nav__container--search">
+                                    <div class="a">
+                                        <a href="@Url.Action("Login", "Account", new { area = "Admin" })">
+                                            <img src="~/Style/img/icon/icon_Login.jpg" class="avt" />
+                                        </a>
+                                        <a href="@Url.Action("SignUpp", "Account", new { area = "Admin" })">
+                                            <img src="~/Style/img/icon/icon_SignUp.jpg" class="avt" />
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="header__menu">
+            <div class="header__menu__overlay"></div>
+            <div class="header__menu__body--content">
+                <ul>
+                    <li><a href="@Url.Action("trangchu", "trangchu")">Trang chủ</a></li>
+                    <li>
+                        <a href="@Url.Action("TrangKhachSan", "TrangKhachSan", new {maks = Session["MaKhachSanPhong"],
+                                batdau = Session["batdau"], ketthuc = Session["ketthuc"]})">
+                            Khách sạn
+                        </a>
+                    </li>
+                    <li><a href="@Url.Action("chat", "TinNhan", new {makh = Session["MaNguoiDung"]})">Nhắn tin</a></li>
+
+                </ul>
+                <i class="fas fa-times" id="menu_close"></i>
+            </div>
+        </div>
+        <div class="scroll-top">
+            <i class="fas fa-arrow-up"></i>
+        </div>
+    </div>
+    @RenderBody()
+    <nav class="nav"></nav>
+    <div class="footer">
+        <div class="end">
+            <div class="name">
+                <h1>JADE DRAGON</h1>
+            </div>
+            <div class="logo">
+                <img src="~/Style/img/avt/logo.jpg" />
+            </div>
+        </div>
+    </div>
+</body>
+</html>

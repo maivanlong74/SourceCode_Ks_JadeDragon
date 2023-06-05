@@ -1,0 +1,69 @@
+﻿@model Jade_Dragon.Models.NguoiDung
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="home">
+    <div class="body">
+
+        <div class="Content">
+            <h1 style=" color: aliceblue; padding-bottom: 63px; margin-left: -110px; margin-top: -30px;">
+                Thông tin khách hàng @Html.DisplayFor(model => model.HoTen)
+            </h1>
+            <form action="" method="post">
+
+                @if (Model.Avt == null)
+                {
+                    <div class="Avt" style="margin-top:0px;">
+                        <div class="image">
+                            <div style="margin-top: 170px;">
+                                <i style="color:wheat;">Chưa có ảnh !!!</i>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else if (Model.Avt != null)
+                {
+                    <div class="Avt" style="margin-top:0px;">
+                        <div class="image">
+                            <img src="~/UpLoad_Img/KhachHang/@Model.Avt" alt="">
+                        </div>
+                    </div>
+                }
+
+                <div class="Info" style="margin-left: 60vh;">
+                    <div class="makh one">
+                        <label for="">Mã Khách Hàng: </label>
+                        <span>@Html.DisplayFor(model => model.MaNguoiDung)</span>
+                    </div>
+                    <div class="tenkh one">
+                        <label for="">Tên Khách Hàng: </label> <span>@Html.DisplayFor(model => model.HoTen)</span>
+                        <label for="" style="margin-left: 40px;">Địa chỉ: </label> <span>@Html.DisplayFor(model => model.DiaChi)</span>
+                    </div>
+                    <div class="sdt one">
+                        <label for="">Số điện thoại: </label> <span>@Html.DisplayFor(model => model.SoDienThoai)</span>
+                        <label for="" style="margin-left: 40px;">Gmail: </label> <span>@Html.DisplayFor(model => model.Gmail)</span>
+                    </div>
+                    <div class="CMND one">
+                        <label for="">CMND / Thẻ Căn cước công dân: </label>
+                        <span>@Html.DisplayFor(model => model.CMND)</span>
+                    </div>
+                    <div class="tendn one">
+                        <label for="">Tên đăng nhập: </label>
+                        <span>@Html.DisplayFor(model => model.TenDangNhap)</span>
+                    </div>
+                    <div class="matkhau one">
+                        <label for="">Mật khẩu</label>
+                        <span>@Html.DisplayFor(model => model.MatKhau)</span>
+                    </div>
+                </div>
+            </form>
+            <div class="button" style="margin-left: 126px; display: flex; margin-top: -40px;">
+                <a href="@Url.Action("Edit", "QLKhachHang", new { id = Model.MaNguoiDung })" class="out two">Chỉnh sửa</a>
+                <a href="@Url.Action("QuanLyKh", "QLKhachHang")" class="out two">Quay về trang khách hàng</a>
+            </div>
+        </div>
+    </div>
+</div>

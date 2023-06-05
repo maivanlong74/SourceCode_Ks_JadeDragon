@@ -1,0 +1,24 @@
+﻿@model Jade_Dragon.Models.NguoiDung
+@{
+    ViewBag.Title = "QuenMatKhau";
+}
+
+<h2>QuenMatKhau</h2>
+<form action="~/User/XacNhan" method="post">
+    @Html.AntiForgeryToken()
+    <div class="inputs">
+        <div class="input" style="margin-left: 180px; margin-top: 83px;">
+            @Html.EditorFor(model => model.Code, new { htmlAttributes = new { placeholder = "Nhập Mã Xác Nhận" } })
+            @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+
+            <input type="hidden" value="@Session["MaKh"]" name="MaKH" id="MaKH" />
+
+            @Html.PasswordFor(model => model.Mk, new { placeholder = "Mật khẩu" })
+            @Html.ValidationMessageFor(model => model.Mk, "", new { @class = "text-danger" })
+            <button type="submit">Gửi</button>
+        </div>
+        <input type="hidden" value="@Session["MaKh"]" name="MaKH" id="MaKH" />
+
+    </div>
+</form>
+

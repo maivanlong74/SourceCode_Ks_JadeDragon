@@ -1,0 +1,146 @@
+﻿body {
+    background: url(/Style/img/nen.jpg);
+    background-size: cover;
+}
+
+.home {
+    left: 270px;
+    top: 0px;
+    width: 165vh;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+}
+
+.home-body {
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    background: rgba(0,0,0,0.7);
+}
+
+h1 {
+    color: white;
+    margin-bottom: 10px;
+}
+
+/*=========================================*/
+.home-avt {
+    width: 100%;
+    height: 75vh;
+    margin-bottom: 10px;
+    background-color: black;
+    border: 3px solid yellow;
+    border-radius: 20px;
+}
+form .button-them {
+    background-color: white;
+    width: 100%;
+    height: 20%;
+    font-size: 20px;
+    transition: .3s all ease;
+    border-radius: 20px;
+    color: black;
+    cursor: pointer;
+}
+
+    form .button-them:hover {
+        background-color: black;
+        border: 2px solid yellow;
+        color: yellow;
+        font-weight: 800;
+    }
+
+form .List-anh {
+    margin-top: 30px;
+    width: 100%;
+    height: 60vh;
+    border-radius: 20px;
+    border: 1px solid white;
+    display: flex;
+}
+
+    form .List-anh .anh-item {
+        width: 20%;
+        height: 80%;
+        border: 1px solid yellow;
+        margin-top: 6vh;
+        margin-left: 10px;
+        border-radius: 20px;
+        flex: 1;
+        transition: .3s all ease;
+        overflow: hidden;
+    }
+
+        form .List-anh .anh-item .anh-a {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            object-fit: cover;
+        }
+
+        form .List-anh .anh-item .Close-anh {
+            position: absolute;
+            z-index: 996;
+            width: 50px;
+            height: 50px;
+            background-color: black;
+            border-radius: 20px;
+        }
+
+            form .List-anh .anh-item .Close-anh img {
+                width: 50px;
+            }
+
+        form .List-anh .anh-item:hover {
+            flex: 5;
+        }
+
+    form .List-anh .anh-them-item {
+        width: 20%;
+        height: 80%;
+        border: 1px solid yellow;
+        margin-top: 6vh;
+        margin-left: 10px;
+        border-radius: 20px;
+        transition: .3s all ease;
+        overflow: hidden;
+    }
+
+        form .List-anh .anh-them-item .input-them {
+            border: 3px solid yellow;
+            margin-top: 20vh;
+            margin-left: -136px;
+            width: 11vh;
+            position: absolute;
+            z-index: 2;
+        }
+
+        form .List-anh .anh-them-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            position: relative;
+            z-index: -1;
+        }
+/*====================================*/
+.quayve {
+    display: block;
+    text-decoration: none;
+    width: 100%;
+    padding: 15px 0px 15px 0px;
+    background-color: wheat;
+    border-radius: 20px;
+    text-align: center;
+    color: black;
+    font-weight: 700;
+    transition: .3s all ease;
+}
+
+.quayve:hover {
+    background-color: black;
+    border: 2px solid white;
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+}

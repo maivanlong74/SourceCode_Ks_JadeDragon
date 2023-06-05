@@ -1,0 +1,99 @@
+﻿
+#map .Search-Search {
+    margin-left: 250px;
+    margin-top: 12px;
+}
+
+.body .map{
+    height: 100%;
+}
+.body #map .ol-unselectable {
+    cursor: pointer;
+}
+.body .map .ol-viewport {
+    border: 3px solid yellow;
+}
+
+.body .map .ol-zoomslider {
+    border: 1px solid !important;
+    background-color: aqua !important;
+}
+
+.body .map .ol-scale-line {
+    left: 40px;
+    bottom: 10px;
+}
+
+#map .popup {
+    position: absolute;
+    z-index: 999;
+    display: none;
+}
+/*-------------*/
+
+.body #map .DangKy_Map #register-form {
+    padding: 50px;
+    height: 360px;
+    border-radius: 80px;
+    border: 1px solid yellow;
+}
+
+.body #map .DangKy_Map {
+    position: absolute;
+    z-index: -999;
+    margin-left: 60px;
+    margin-top: 100px;
+    text-align: left;
+}
+
+.body #map .DangKy_Map {
+    position: absolute;
+    z-index: -999;
+    margin-left: 60px;
+    margin-top: 100px;
+    text-align: left;
+}
+
+    .body #map .DangKy_Map #form-khuvuc {
+        padding: 20px;
+        height: 100px;
+        border-radius: 80px;
+        border: 1px solid yellow;
+    }
+
+    .body #map .DangKy_Map #form-khuvuc label {
+        color: wheat;
+        font-weight: 700;
+    }
+
+    .body #map .DangKy_Map #form-khuvuc input {
+        color: wheat;
+        border: 1px solid white;
+        background: none;
+        margin-bottom: 13px;
+        border-radius: 20px;
+        text-align: center;
+        width: 250px;
+        padding: 3px;
+    }
+
+        .body #map .DangKy_Map #form-khuvuc input::placeholder{
+            color: yellow;
+        }
+
+        .body #map .DangKy_Map #form-khuvuc button {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid wheat;
+            color: wheat;
+            padding: 5px 20px;
+            border-radius: 10px;
+            margin-left: 8px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+    .body #map .DangKy_Map #form-khuvuc button:hover {
+        background-color: black;
+        border: 1px solid yellow;
+        color: yellow;
+    }
